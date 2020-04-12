@@ -1,0 +1,27 @@
+// D'ABORD VOUS DEVEZ CREER VOTRE PSEUDO ET VOTRE ADRESSE E MAIL
+
+git config --global user.name "Camilleexemple"
+git config --global user.email "Votre@email.com"
+
+
+// SE CONNECTE AU GITHUB ET RECUPERE LES FICHIERS
+
+git clone https://github.com/camido/projetpiscine.git
+
+//vous vous positionnez dans le dossier où sont tous les fichiers
+cd projetpiscine
+git init
+
+// APRES CA UNE FENETRE CONNEXION GITHUB S'OUVRE ET VOUS VOUS IDENTIFIEZ
+
+mtn dans votre explorateur de fichiers vous pouvez retrouver tous les fichiers,codes etc à cette adresse
+C:\Users\user\projetpiscine
+(c'est le répertoire que vous avez créée sur votre disque, l'adresse peut changer ce depend de l'ordi vous chercher sur votre disque)
+et mtn vous avez les fichiers que vous pouvez ouvrir et modifier
+
+
+//quand vous avez modifié un fichier et que vous voulez "l'enregistrer" vous devez faire un commit:
+
+//une fois que vous avez fait toutes les modifications nécessaires vous pouvez "pusher" tous vos commit sur github (site internet):
+git push origin master
+//master c'est le nom de la branche dans laquelle vous travaillez
