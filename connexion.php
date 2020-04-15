@@ -112,10 +112,10 @@
                         }
                     }
                         else {
-                            $sql= "SELECT * FROM vendeur WHERE pseudo_a LIKE '$pseudo'";
+                            $sql= "SELECT * FROM vendeur WHERE pseudo_v LIKE '$pseudo'";
                                     $result = mysqli_query($db_handle, $sql);
                                     while ($data = mysqli_fetch_assoc($result)) {
-                                        $_SESSION['id_utilisateur']=$data['id_a'];
+                                        $_SESSION['id_utilisateur']=$data['id_v'];
                                     }
                                     $_SESSION['type_utilisateur']= 'vendeur';
                                     //header('Location: vendeur1.html');
@@ -125,12 +125,12 @@
                     } 
                 }
                 else {
-                    $sql= "SELECT * FROM acheteur WHERE pseudo_a LIKE '$pseudo'";
+                    $sql= "SELECT * FROM administrateur WHERE pseudo_admin LIKE '$pseudo'";
                     $result = mysqli_query($db_handle, $sql);
                     while ($data = mysqli_fetch_assoc($result)) {
-                        $_SESSION['id_utilisateur']=$data['id_a'];
+                        $_SESSION['id_utilisateur']=$data['id_admin'];
                     }
-                    $_SESSION['type_utilisateur']= 'acheteur';
+                    $_SESSION['type_utilisateur']= 'admin';
                     //header('Location: admin1.html');
                 }
             }
