@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "";
     $mdp = isset($_POST["mdp"])? $_POST["mdp"] : "";
 
@@ -9,7 +11,7 @@
         $db_found = mysqli_select_db($db_handle, $database);
         if ($db_found) 
         {
-            $sql = "SELECT pseudo_admin, email_admin  FROM administrateur";
+            $sql = "SELECT pseudo_admin, email_admin, id_admin  FROM administrateur";
 
             if ($_POST["button1"]) {
                 // On crée un array de valeur. Chaque valeurs comprenant le nom du champ en BDD et la valeur de l'input
@@ -38,7 +40,7 @@
                 
                 //regarder s'il y a de résultat
                 if (mysqli_num_rows($result) === 0) {
-                    $sql = "SELECT pseudo_v, email_v FROM vendeur";
+                    $sql = "SELECT pseudo_v, email_v, id_v FROM vendeur";
 
                     if ($_POST["button1"]) {
                         // On crée un array de valeur. Chaque valeurs comprenant le nom du champ en BDD et la valeur de l'input
@@ -67,8 +69,7 @@
                         
                         //regarder s'il y a de résultat
                         if (mysqli_num_rows($result) === 0) {
-                            $sql = "SELECT pseudo_a, email_a FROM acheteur";
-
+                            $sql = "SELECT pseudo_a, email_a, id_a FROM acheteur";
                             if ($_POST["button1"]) {
                                 // On crée un array de valeur. Chaque valeurs comprenant le nom du champ en BDD et la valeur de l'input
                                 $fields = array(
@@ -100,33 +101,45 @@
                                     header('Location: connexion.html');
                                 }
                                 else {
-                                    echo "Vous avez un compte acheteur";
+                                    $sql= "SELECT * FROM acheteur WHERE pseudo_a LIKE '$pseudo'";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    while ($data = mysqli_fetch_assoc($result)) {
+                                        $_SESSION['id_utilisateur']=$data['id_a'];
+                                    }
+                                    $_SESSION['type_utilisateur']= 'acheteur';
+                                    //header('Location: acheteur1.html');
                                 }
                         }
                     }
                         else {
-                            echo "Vous avez un compte vendeur";
+                            $sql= "SELECT * FROM vendeur WHERE pseudo_a LIKE '$pseudo'";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    while ($data = mysqli_fetch_assoc($result)) {
+                                        $_SESSION['id_utilisateur']=$data['id_a'];
+                                    }
+                                    $_SESSION['type_utilisateur']= 'vendeur';
+                                    //header('Location: vendeur1.html');
                         }
                         
             
                     } 
                 }
                 else {
-                //envoyer sur le page après connexion : header('Location: exo2-front.html');
-                echo "Vous avez un compte admin";
-                //on trouve le livre recherché
-                /* while ($data = mysqli_fetch_assoc($result)) {
-                    echo "ID: " . $data['ID'] . "<br>";
-                    echo "Titre: " . $data['Titre'] . "<br>";
-                    echo "Auteur: " . $data['Auteur'] . "<br>";
-                    echo "Année: " . $data['Annee'] . "<br>";
-                    echo "Editeur: " . $data['Editeur'] . "<br>";
-                    echo "<br>";
-                }*/
+                    $sql= "SELECT * FROM acheteur WHERE pseudo_a LIKE '$pseudo'";
+                    $result = mysqli_query($db_handle, $sql);
+                    while ($data = mysqli_fetch_assoc($result)) {
+                        $_SESSION['id_utilisateur']=$data['id_a'];
+                    }
+                    $_SESSION['type_utilisateur']= 'acheteur';
+                    //header('Location: admin1.html');
                 }
             }
         }
         //fermer la connexion
         mysqli_close($db_handle);
-    } else {
-    }?>
+    } 
+    else 
+    {
+        header('Location: connexion.html');  
+    }
+    ?>
