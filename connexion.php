@@ -131,7 +131,7 @@
                         $_SESSION['id_utilisateur']=$data['id_admin'];
                     }
                     $_SESSION['type_utilisateur']= 'admin';
-                    //header('Location: admin1.html');
+                    header('Location: admin1.html');
                 }
             }
         }
