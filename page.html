@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TP5: Introduction au Framework Bootstrap</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style type="text/css">
+    body {
+    padding: 0px;
+    margin: 0px;
+    background: #f2f6e9;
+    }
+   
+    /*--- navigation bar ---*/
+    .navbar {
+    background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
+    }
+    .nav-link, .navbar-brand {
+    color: rgb(7, 7, 7);
+    cursor: pointer;
+    font-style: oblique;
+    font-weight: 700;
+    }
+    .nav-link {
+    margin-right: 1em !important;
+    }
+    .nav-link:hover {
+    color: #000;
+    }
+    .navbar-collapse {
+    justify-content: flex-end;
+    }
+    .header {
+    background-image: url('pdg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    }
+    .description {
+    left: 50%;
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, -55%);
+    text-align: center;
+    }
+    .description h1 {
+    color: #ffffff;
+    font-style: oblique;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.5;
+    }
+    .description p {
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    }
+    .description button {
+    border:1px solid #dbb775;
+    background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
+    border-radius: 0;
+    color: #fff;
+    }
+    .description button:hover {
+    border:1px solid #fff;
+    background-color: #fff;
+    color: #000
+    }
+    footer {
+      background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
+      color: white;
+      padding: 15px;
+    }
+    
+    
+    
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.header').height($(window).height());
+    });
+</script>   
+</head>
+
+<body>
+   
+    <nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    
+    <header class="page-header header container-fluid">
+        <div class="overlay"></div>
+        <div class="description">
+            <h1>Connectez vous en tant que : </h1>
+            <button class="btn btn-outline-secondary btn-lg">Acheteur</button>
+            <button class="btn btn-outline-secondary btn-lg">Vendeur</button>
+            <button class="btn btn-outline-secondary btn-lg">Admin</button>
+        </div>
+    
+    </header>
+
+    <footer class="container-fluid">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <p>
+        37, quai de Grenelle, 75015 Paris, France <br>
+        info@webDynamique.ece.fr <br>
+        +33 01 02 03 04 05 <br>
+        +33 01 03 02 05 04
+        </p>
+        <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
+      </footer>
+
+   
+</body>
+</html>
