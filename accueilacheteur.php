@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-<title>EbayECE - Acceuil Acheteur</title>
-=======
 <title>EbayECE - Acceuilacheteur</title>
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -15,17 +11,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <style type="text/css">
-<<<<<<< HEAD
-
-=======
-    *{
-
-    margin:0;
-
-    padding:0;
-
-    }
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
     body, html{height:100%;}
     body {
     background-image: url('images_projet/pdg.jpg');   
@@ -86,19 +71,8 @@
         margin:0 auto;
         margin-top:10%;
         margin-bottom:10%;
-<<<<<<< HEAD
     }
 
-=======
-        align:center;
-    }
-    #main{
-        margin:0 auto;
-        margin-top:10%;
-        margin-bottom:10%;
-        align:center;
-    }
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
 
 
     h2{
@@ -151,10 +125,6 @@
     border-color: #84601F ;
     border-width: 1px 1em;;
     width: 50%;
-<<<<<<< HEAD
-=======
-    align:right;
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
     }
     th {
     font-family: monospace;
@@ -206,15 +176,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-<<<<<<< HEAD
                       <a class="dropdown-item" href="categorieFerraille.php">Férraille ou Trésor</a>
                       <a class="dropdown-item" href="#">Bon pour les Musées</a>
                       <a class="dropdown-item" href="#">Accessoire VIP</a>
-=======
-                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
-                      <a class="dropdown-item" href="#">Bon pour les musées</a>
-                      <a class="dropdown-item" href="#">Accésoires VIP</a>
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -236,13 +200,8 @@
         </div>
     </nav>
        
-<<<<<<< HEAD
         <header class="page-header container-fluid">
             <div class="overlay"></div> -->
-=======
- <!--   <header class="page-header container-fluid">
-    <div class="overlay"></div> -->
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
 
         <h2>  Quelques uns de nos produits : </h2>
    
@@ -264,11 +223,7 @@
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
-<<<<<<< HEAD
             echo "<br><table align='center'>";
-=======
-            echo "<br><table>";
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
             echo "<caption> </caption>";
             echo "<tr>";
             echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
@@ -306,11 +261,7 @@
         mysqli_close($db_handle);
         ?>  
         
-<<<<<<< HEAD
    </header> 
-=======
-   <!-- </header> -->
->>>>>>> 0fd31240e2293935b877369e7d2ef1478b62c39a
 
     <footer class="container-fluid">
         <h6 class="text-uppercase font-weight-bold">Contact</h6>
