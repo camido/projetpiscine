@@ -46,6 +46,12 @@
     background-position: center;
     position: relative;
     }
+    .form-check .form-check-input {
+    opacity: 1;
+    height: inherit;
+    width: inherit;
+    overflow: visible;
+    }
     #container{
         width:400px;
         margin-left: 20%;
@@ -145,7 +151,7 @@
                <label><b>Adresse ligne1</b></label>
                 <input type="text" placeholder="Adresse 1" name="adresse1" required>
                 <label><b>Adresse ligne2</b></label>
-                <input type="text" placeholder="Adresse 2" name="adresse2" required>
+                <input type="text" placeholder="Adresse 2" name="adresse2">
         <table>       
             <tr>
                 <td><label><b>Ville</b></label>
@@ -164,7 +170,7 @@
 
             <br><br>
 
-            <section>
+         <!--  <section>
                 <h2>Informations de paiement</h2><br>
                 <p>
                   <label for="card">
@@ -191,15 +197,16 @@
                         <input type="date" placeholder="Date d'expiration" name="datecarte" required></td>
                 </tr>
             </table>
+            
+                
+            </section> -->
             <table>
                 <tr>
-                    <input type="checkbox" id="conditions" name="conditions">
+                    <input type="checkbox" class:"form-check-input" id="conditions" name="conditions" value="accepter" required>
                     <label for="conditions">On cochant cette case vous acceptez nos conditions d'utilisation. Si vous faîtes une offre sur un article, vous serez sous contrat légal pour l'acheter si le vendeur accepte l'offre. </label>
                 </tr>
             </table>
-                
-            </section>
-
+            
             <input type="submit" id='submit' value='Valider' >
 
 
