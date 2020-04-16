@@ -84,38 +84,30 @@ $fond = isset($_POST["choix"]) ? $_POST["choix"] : "";
             {            
                 
 
-                if($fond === "image4")
+                if($fond === "image1" || $fond === "image2"|| $fond === "image3" )
                 {
-                
-                $sqlInsert = "INSERT INTO vendeur (pseudo_v, email_v, nom_v, photo_v) VALUES ('$pseudo', '$mdp', '$nom', '$photo')";
+                $sqlInsert = "INSERT INTO vendeur (pseudo_v, email_v, nom_v, photo_v, image_fond) VALUES ('$pseudo', '$mdp', '$nom', '$photo', '$fond')";
 
                 $result = mysqli_query($db_handle, $sqlInsert);
                 }
                 else
                 {
-                $sqlInsert = "INSERT INTO vendeur (pseudo_v, email_v, nom_v, photo_v, image_fond) VALUES ('$pseudo', '$mdp', '$nom', '$photo', '$fond')";
+                $sqlInsert = "INSERT INTO vendeur (pseudo_v, email_v, nom_v, photo_v) VALUES ('$pseudo', '$mdp', '$nom', '$photo')";
 
                 $result = mysqli_query($db_handle, $sqlInsert);
-
                 }
                 header('Location: inscription_reussie.html'); 
             }
             else
             {
+                
                 // PSEUDO DEJA PRIS
-                echo '<body onLoad="alert(\'Ce pseudo est déjà pris.\')">';
+                 echo '<body onLoad="alert(\'Ce pseudo est déjà pris.\')">';
 		        // puis on le redirige vers la page d'accueil
-		        echo '<meta http-equiv="refresh" content="0;URL=exo2-front.html">';
+		       echo '<meta http-equiv="refresh" content="0;URL=inscriptionvendeur.html">';
                 //header('Location: inscriptionVendeur.html'); 
             }
-
-
-
-
-
-
-
-            
+     
         } 
         else{
             echo "Database not found";
