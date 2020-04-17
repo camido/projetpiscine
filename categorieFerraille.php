@@ -259,10 +259,12 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "<table class='table2' > <tr> <td><h2>  Achat Immédiat : </h2> </td> <td><h2>  Enchere : </h2></td><td><h2>  Meilleure Offre : </h2></td></tr> </table>";
     echo "<table class='table1' align='left'  >";
     
-    while ($data = mysqli_fetch_assoc($result)) {
 
+    while ($data = mysqli_fetch_assoc($result)) {
+    $nom=$data['nom_i'];
+    $id=$data['id_item'];
     echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+    echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";
@@ -302,10 +304,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     
     echo "<table class='table1' align='left' >";
     while ($data = mysqli_fetch_assoc($result)) {
- 
-    echo "<caption> </caption>";
+    $nom=$data['nom_i'];
+    $id=$data['id_item'];
     echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+    echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";
@@ -342,9 +344,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     //afficher les résultats
     echo "<table class='table1' align='left' >";
     while ($data = mysqli_fetch_assoc($result)) {
-    echo "<caption> </caption>";
-    echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+        $nom=$data['nom_i'];
+        $id=$data['id_item'];
+        echo "<tr>";
+        echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";

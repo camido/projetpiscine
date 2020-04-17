@@ -162,7 +162,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
+            <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg">Deconnexion</button> </a>
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
