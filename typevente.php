@@ -186,7 +186,7 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                        <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
                       <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
                       <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
@@ -201,14 +201,17 @@
     </nav>
        
         <header class="page-header container-fluid">
-            <div class="overlay"></div> -->
+            <div class="overlay"></div> 
 
-        <h2>  Quelques uns de nos produits : </h2>
+        
    
    
 
         <?php
-
+        $vente=$_GET['vente'];
+        echo "<div style='text-align:center'>
+        <h3>  Voici tous les items disponibles en " . $vente . " ! </h3>
+           </div>";
         //identifier votre BDD
         $database = "ebayece";
         //connectez-vous de la BDD
@@ -217,7 +220,7 @@
         //si la BDD existe
             if ($db_found) {
             //on cherche le livre
-            $sql = "SELECT * FROM item";
+            $sql = "SELECT * FROM item WHERE type_vente LIKE '$vente'";
             $result = mysqli_query($db_handle, $sql);
 
             
