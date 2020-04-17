@@ -239,9 +239,9 @@ body, html{height:100%;}
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="#">Bon pour les Musées</a>
-                      <a class="dropdown-item" href="#">Accessoire VIP</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">

@@ -162,7 +162,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg">Deconnexion</button> </a>
+            <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg"> Déconnexion </button>  </a>
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
@@ -176,9 +176,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="categorieFerraille.php">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="#">Bon pour les Musées</a>
-                      <a class="dropdown-item" href="#">Accessoire VIP</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">

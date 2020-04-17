@@ -209,9 +209,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="#">Bon pour les Musées</a>
-                      <a class="dropdown-item" href="#">Accessoire VIP</a>
+                     <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -237,12 +237,13 @@
             <div class="overlay"></div> 
 
            
-            <div style='text-align:center'>
-                 <h3>  Bienvenue dans la catégorie Ferraille ou Trésor ! </h3>
-             </div>;
+            
 
             <?php
  $catego = $_GET['categorie'];
+ echo "<div style='text-align:center'>
+ <h3>  Bienvenue dans la catégorie " . $catego . " ! </h3>
+    </div>";
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -296,7 +297,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
     // DEUXIEME COLONNE
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND type_vente LIKE 'Enchere'";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND type_vente LIKE 'Enchere'";
     $result = mysqli_query($db_handle, $sql);
 
     
@@ -337,7 +338,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
     // TROISIEME COLONNE
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND type_vente LIKE 'Meilleure Offre'";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND type_vente LIKE 'Meilleure Offre'";
     $result = mysqli_query($db_handle, $sql);
 
     
