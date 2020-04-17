@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,9 +169,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
-                      <a class="dropdown-item" href="#">Bon pour les musées</a>
-                      <a class="dropdown-item" href="#">Accésoires VIP</a>
+                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -179,13 +179,13 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -205,7 +205,7 @@
                 <h3><U>Information client</U></h3>
             
              <?php
-
+       
         //identifier votre BDD
         $database = "ebayece";
 
@@ -213,10 +213,10 @@
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, $database);
         //si la BDD existe
-       // $ID = $_SESSION['id_utilisateur'];
+        $ID = $_SESSION['id_utilisateur'];
             if ($db_found) {
             //on cherche le livre
-            $sql = "SELECT * FROM acheteur where id_a like '0'";
+            $sql = "SELECT * FROM acheteur where id_a like '$ID'";
             $result = mysqli_query($db_handle, $sql);
 
             
@@ -278,10 +278,10 @@
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, $database);
     //si la BDD existe
-   // $ID = $_SESSION['id_utilisateur'];
+    $ID = $_SESSION['id_utilisateur'];
         if ($db_found) {
         //on cherche le livre
-        $sql = "SELECT * FROM acheteur where id_a like '0'";
+        $sql = "SELECT * FROM acheteur where id_a like '$ID'";
         $result = mysqli_query($db_handle, $sql);
 
         

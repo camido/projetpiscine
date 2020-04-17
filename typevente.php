@@ -123,7 +123,8 @@
     border: medium solid #000000;
     border-collapse: collapse;
     border-color: #84601F ;
-    border-width: 1px 1em;;
+    border-width: 1px 1em;
+    color: #000000;
     width: 50%;
     }
     th {
@@ -143,6 +144,18 @@
     }
     caption {
     font-family:sans-serif;
+    }
+    h3{
+    
+        color: rgb(0,0,0);
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 30px;
+        font-style: oblique;
+        font-weight: 200;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 30px;
+
     }
     
     
@@ -186,13 +199,14 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
                       <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
                       <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+
 
 
                 
@@ -226,10 +240,11 @@
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
+            $id=$data['id_item'];
             echo "<br><table align='center'>";
             echo "<caption> </caption>";
             echo "<tr>";
-            echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
+            echo "<th> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
             echo " #" . $data['id_item'] . "</th>"; 
             echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
             echo "<td> </td>";

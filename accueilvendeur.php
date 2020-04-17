@@ -184,7 +184,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 // $ID = $_SESSION['id_utilisateur'];
     if ($db_found) {
     //on cherche le livre
-    $sql = "SELECT * FROM vendeur where id_v like '3'";
+    $sql = "SELECT * FROM vendeur where id_v like '1'";
     $result = mysqli_query($db_handle, $sql);
     while ($data = mysqli_fetch_assoc($result)) {
     echo '<img src="'.$data['image_fond'].'" width="128" height="117"> </img>';
