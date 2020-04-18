@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE: ADMIN - ajouter un item</title>
+<title>EbayECE - Réussie ! </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -40,37 +40,6 @@
     .navbar-collapse {
     justify-content: flex-end;
     }
-    .navbar-dc {
-
-    left : 90%;
-
-    position: absolute;
-
-    top : 30%;
-
-
-    }
-
-    .navbar-dc button {
-
-    border:1px solid #000000;
-
-    background-color: #3d3d3d
-
-    border-radius: 0;
-
-    color: #000000;
-    }
-
-    .navbar-dc button:hover {
-
-    border:1px solid rgb(0, 0, 0);
-
-    background-color: #ddb775;
-
-    color: rgb(78, 78, 78)
-    }
-
     .header {
     background-image: url('pdg.jpg');
     background-size: cover;
@@ -79,7 +48,7 @@
     }
     #container{
         width:400px;
-        margin-left: 20%;
+        margin:0 auto;
         margin-top:10%;
         margin-bottom:10%;
     }
@@ -87,7 +56,7 @@
 
     /* carre blanc */
     form {
-        width:200%;
+        width:100%;
         padding: 30px;
         border: 1px solid #f1f1f1;
         background: #fff;
@@ -98,12 +67,6 @@
         margin: 0 auto;
         padding-bottom: 10px;
     }
-    #container h2{
-        width: 50%;
-        margin: 0 auto;
-        padding-bottom: 10px;
-    }
-    
     
     /* Full-width inputs */
     input[type=text], input[type=password] {
@@ -144,62 +107,32 @@
 <body>
    
     <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="#">Ebay ECE: ADMIN</a>
+        <a class="navbar-brand" href="#">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
-        </div>
-
     </nav>
     
     <div id="container">
         <!-- zone de connexion -->
         
-        <form>
+        <form action="connexion.php" method="post">
+            <table>
+            <tr>
+                <td><h1>Inscription réussite !</h1></td>
+            </tr>
+            <tr>
+                <td><a href="connexion.html">Retour à la page de connexion. </a> </td>
+            </tr>
             
-            <h1>
-                <table>
-                    <tr>
-                        <th>
-                            Item a ajouter : 
-                        </th>
-                    </tr>
-                </table>
-            </h1>
+
+                 
+                
+            </table>
             
-            <p><label><b> Catégorie de l'item : </b></label><br>
-                <input type="radio" name="categorie"> Feraille ou tresor <br>
-                <input type="radio" name="categorie"> Bon pour le musee <br>
-                <input type="radio" name="categorie"> Accessoire VIP <br></p>
-
-            <label><b>Nom* :</b></label>
-            <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>
-            
-            <label><b>Photo 1* :</b></label>
-            <input type="file" name="item_photo" id="item_photo" required><br>
-
-            <label><b>Photo 2 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
-
-            <label><b>Photo 3 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
-
-            <label><b>Description* :</b></label>
-            <input type="text" placeholder="Ecrire une description" name="item_description" required size=2>
-
-            <label><b>Video :</b></label>
-            <input type="file" name="item_video" id="item_video"> <br>
-
-
-
-            <a>*: champs obligatoires</a><br> 
-
-            <input type="submit" value="Ajouter">  <br> 
-
-
         </form>
+
+              
     </div>
 
     <footer class="container-fluid">

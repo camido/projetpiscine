@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE -paiement</title>
+<title>Ebay ECE: ADMIN - ajouter un item</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -31,14 +31,6 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 40px;
     }
-    .nav-link, .navbar-center {
-    color: rgb(248, 244, 244);
-    cursor: pointer;
-    font-style: oblique;
-    font-weight: 200;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    }
     .nav-link {
     margin-right: 1em !important;
     }
@@ -48,28 +40,48 @@
     .navbar-collapse {
     justify-content: flex-end;
     }
+    .navbar-dc {
+
+    left : 90%;
+
+    position: absolute;
+
+    top : 30%;
+
+
+    }
+
+    .navbar-dc button {
+
+    border:1px solid #000000;
+
+    background-color: #3d3d3d
+
+    border-radius: 0;
+
+    color: #000000;
+    }
+
+    .navbar-dc button:hover {
+
+    border:1px solid rgb(0, 0, 0);
+
+    background-color: #ddb775;
+
+    color: rgb(78, 78, 78)
+    }
+
     .header {
     background-image: url('pdg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
     }
-    .form-check .form-check-input {
-    opacity: 1;
-    height: inherit;
-    width: inherit;
-    overflow: visible;
-    }
     #container{
         width:400px;
         margin-left: 20%;
         margin-top:10%;
         margin-bottom:10%;
-    }
-    .navbar-dc {
-    left : 80%;
-    position: absolute;
-    top : 30%;
     }
 
 
@@ -82,15 +94,14 @@
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
     #container h1{
-        width: 30%;
+        width: 50%;
         margin: 0 auto;
         padding-bottom: 10px;
     }
     #container h2{
-        width: 70%;
+        width: 50%;
         margin: 0 auto;
         padding-bottom: 10px;
-        text-align: center;
     }
     
     
@@ -132,62 +143,43 @@
 
 <body>
    
-    <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+    <nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="#">Ebay ECE: ADMIN</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
-            
+            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
         </div>
-    </nav>
-    <nav class="navbar navbar-expand-md">
 
-        
-        <div class="center navbar-center" id="main-navigation">
-            
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
-                      <a class="dropdown-item" href="#">Bon pour les musées</a>
-                      <a class="dropdown-item" href="#">Accésoires VIP</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Achat
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
-                    </div>
-                  </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
-
-
-                
-            </ul>
-        </div>
     </nav>
     
     <div id="container">
+        <!-- zone de connexion -->
         
-        <form action="inscriptionacheteur.php" method="POST">
-        
-
-     <section>
-                <h2>Panier</h2><br>
-                <p>
-
+        <form>
             
-            <input type="submit" id='submit' value='Valider' >
+            <h1>
+                <table>
+                    <tr>
+                        <th>
+                            Ajouter vendeur : 
+                        </th>
+                    </tr>
+                </table>
+            </h1>
+            
+            <label><b>Email :</b></label>
+            <input type="text" placeholder="exemple@edu.ece.fr" name="mail_v" required>
+            
+
+            <label><b>Pseudo :</b></label>
+            <input type="text" placeholder="Pseudo du vendeur" name="pseudo_v" required>
+
+            <label><b>Nom :</b></label>
+            <input type="text" placeholder="Nom du vendeur" name="nom_v" required>
+
+            <input type="submit" value="Ajouter">
 
 
         </form>

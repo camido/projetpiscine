@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>EbayECE - Acceuilacheteur</title>
+<title>Ebay ECE - Panier </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -11,31 +14,18 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <style type="text/css">
-    body, html{height:100%;}
     body {
-    background-image: url('images_projet/pdg.jpg');   
+    background-image: url('images_projet/pdg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
-    text-align:center;
-    min-height: 100vh;
     }
 
-
+   
     /*--- navigation bar ---*/
     .navbar {
     background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
     }
-    .navbar-expand-md {
-        background-image:linear-gradient(60deg, #dbb775, rgb(205, 198, 180));
-    }
-    .navbar-dc {
-    left : 80%;
-    position: absolute;
-    top : 30%;
-    }
-
-
     .nav-link, .navbar-brand {
     color: rgb(7, 7, 7);
     cursor: pointer;
@@ -62,29 +52,50 @@
     justify-content: flex-end;
     }
     .header {
-    color: rgb(0,0,0);
+    background-image: url('pdg.jpg');
+    background-size: cover;
     background-position: center;
-    position:center;
+    position: relative;
+    }
+    .form-check .form-check-input {
+    opacity: 1;
+    height: inherit;
+    width: inherit;
+    overflow: visible;
     }
     #container{
         width:400px;
-        margin:0 auto;
+        margin-left: 20%;
         margin-top:10%;
         margin-bottom:10%;
     }
-
-
-
-    h2{
-        color: rgb(255,255,255);
-        width: 100%;
-        margin: 0 auto;
-        padding-top: 30px;
-        font-style: oblique;
-        font-weight: 200;
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 50px;
+    .navbar-dc {
+    left : 80%;
+    position: absolute;
+    top : 30%;
     }
+
+
+    /* carre blanc */
+    form {
+        width:200%;
+        padding: 30px;
+        border: 1px solid #f1f1f1;
+        background: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    #container h1{
+        width: 30%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+    #container h2{
+        width: 70%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    
     
     /* Full-width inputs */
     input[type=text], input[type=password] {
@@ -106,44 +117,12 @@
         cursor: pointer;
         width: 100%;
     }
-    main
-    {
-        margin: 3rem 0;
-    }
     footer {
       background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
       color: white;
       padding: 15px;
-      bottom:0;; 
-      left: 0; 
-      right: 0;
-      margin-top: auto;
     }
-    table {
-    border: medium solid #000000;
-    border-collapse: collapse;
-    border-color: #84601F ;
-    border-width: 1px 1em;;
-    width: 50%;
-    }
-    th {
-    font-family: monospace;
-    width: 30%;
-    padding: 5px;
-    text-align: center;
-    background-color: #DCB877;
-    background-image: url(sky.jpg);
-    }
-    td {
-    font-family: sans-serif;
-    width: 40%;
-    padding: 5px;
-    text-align: left;
-    background-color: #ffffff;
-    }
-    caption {
-    font-family:sans-serif;
-    }
+    
     
     
 </style>
@@ -155,18 +134,19 @@
 </head>
 
 <body>
-    
+   
     <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg"> Déconnexion </button>  </a>
+            <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
+            
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
-        
+
         
         <div class="center navbar-center" id="main-navigation">
             
@@ -199,73 +179,88 @@
             </ul>
         </div>
     </nav>
-       
-        <header class="page-header container-fluid">
-            <div class="overlay"></div> 
-
+    
+    <div id="container">
         
-   
-   
+    <form action="paiement.html" method="POST">
+        
 
-        <?php
-        $vente=$_GET['vente'];
-        echo "<div style='text-align:center'>
-        <h3>  Voici tous les items disponibles en " . $vente . " ! </h3>
-           </div>";
-        //identifier votre BDD
-        $database = "ebayece";
-        //connectez-vous de la BDD
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        //si la BDD existe
+        <section>
+            <?php
+            
+            $ID=$_SESSION['id_utilisateur'];
+            echo "<h2>Panier</h2><br>";
+    
+            $database = "ebayece";
+    
+            //connectez-vous de la BDD
+            $db_handle = mysqli_connect('localhost', 'root', '');
+            $db_found = mysqli_select_db($db_handle, $database);
+            //si la BDD existe
             if ($db_found) {
-            //on cherche le livre
-            $sql = "SELECT * FROM item WHERE type_vente LIKE '$vente'";
-            $result = mysqli_query($db_handle, $sql);
-
+                
+    
+                $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
+                
+                $result = mysqli_query($db_handle, $sql);
+    
+                if(mysqli_num_rows($result) === 0)
+                {
+                    echo " <h2> Ce panier est vide </h2>";
+                }
+                else{
+                    $total=0;
+                    while ($data = mysqli_fetch_assoc($result)) 
+                    {
+                    $total= $total + $data['prix'] ;
+                    $photo=$data['photo_i'];
+                    $id=$data['id_item'];
+                    
+                    echo "<table >";
+                    echo "<tr>
+                    <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
+                    echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+                    echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
+                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+                    if($data['type_vente']==='Enchere')
+                    {
+                        echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                    }
+                    if($data['type_vente']==='Meilleure Offre')
+                    {
+                        echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+                    }
+                    if($data['type_vente']==='Achat Immediat')
+                    {
+                        echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                    }  
+                    
+                    echo "</tr><tr>
+                    <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
+                     <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
+                    
+                    
+                    }
+                    echo "</table>";
+                    echo " <h3> SOUS-TOTAL : $total € </h3>";
+                    echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
+                    
+                }
+                
+    
+    } 
+            else 
+            {
+                echo "Database not found. <br>";
+            }
+                
             
-            //afficher les résultats
-            while ($data = mysqli_fetch_assoc($result)) {
-                $id=$data['id_item'];
-            echo "<br><table align='center'>";
-            echo "<caption> </caption>";
-            echo "<tr>";
-            echo "<th> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
-            echo " #" . $data['id_item'] . "</th>"; 
-            echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
-            echo "<td> </td>";
-            
-            echo "</tr>";
-            $image = $data['photo_i'];
-            echo "<tr>";
-            echo "<th>" . "<img src='$image' height='140' width='100'>" ."<br><br></th>";
-            echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
-            if($data['type_vente']==='Enchere')
-            {
-                echo "<td> Le prix de départ est : " . $data['prix'] . " € <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
-            }
-            if($data['type_vente']==='Meilleure Offre')
-            {
-                echo "<td> Vous proposez votre prix.  </td>";
-
-            }
-            if($data['type_vente']==='Achat Immediat')
-            {
-                echo "<td> Le prix est : ". $data['prix'] . " € </td>";
-            }  
-            echo "</tr>";
-
-            }
-            echo "</table>";
-            } else {
-            echo "Database not found. <br>";
-            }
-        
-            //fermer la connexion
-        mysqli_close($db_handle);
-        ?>  
-        
-   </header> 
+    
+              ?>  
+                
+    
+            </form>
+    </div>
 
     <footer class="container-fluid">
         <h6 class="text-uppercase font-weight-bold">Contact</h6>
@@ -278,6 +273,6 @@
         <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
       </footer>
 
-      
+   
 </body>
 </html>

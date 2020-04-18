@@ -169,8 +169,17 @@
                 <input type="text" placeholder="numéro de téléphone" name="numtel" required>
 
             <br><br>
+           
+                   
+                    <h5>Souhaitez vous entrer vos coordonnées bancaires maintenant</h5>
+                    <input type=checkbox name="Informations" value="accepter" onclick="document.getElementById('cacher').style.display = 'block';" onclick="document.getElementById('cacher').style.display = 'none';">
+                    <label for="conditions">Oui</label>
+                    <div id="cacher" style="display:none;"> 
+                    
+                        
+                     
 
-         <!--  <section>
+         <section>
                 <h2>Informations de paiement</h2><br>
                 <p>
                   <label for="card">
@@ -199,7 +208,16 @@
             </table>
             
                 
-            </section> -->
+            </section> 
+            <input name="t" TYPE=TEXT/></div><br/>
+
+            <input type=checkbox onclick="document.getElementById('cacher').style.display = 'none';" />
+            <label for="conditions">Non</label>   
+            <br />
+            
+                
+
+
             <table>
                 <tr>
                     <input type="checkbox" class:"form-check-input" id="conditions" name="conditions" value="accepter" required>

@@ -210,6 +210,21 @@ mysqli_close($db_handle);
 
    
 
+<<<<<<< HEAD
+=======
+//connectez-vous de la BDD
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+//si la BDD existe
+// $ID = $_SESSION['id_utilisateur'];
+    if ($db_found) {
+    //on cherche le livre
+    $sql = "SELECT * FROM vendeur where id_v like '1'";
+    $result = mysqli_query($db_handle, $sql);
+    while ($data = mysqli_fetch_assoc($result)) {
+    echo '<img src="'.$data['image_fond'].'" width="128" height="117"> </img>';
+    echo "</table>";}
+>>>>>>> 4d1242159cc386c23bb7c823db281d9be0cd54bd
 
 
 

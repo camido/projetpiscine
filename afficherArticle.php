@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -225,7 +228,7 @@ body, html{height:100%;}
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
+        <a href="accueil.html">  <button class="btn btn-outline-secondary btn-lg">Deconnexion</button> </a>
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
@@ -249,13 +252,13 @@ body, html{height:100%;}
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -335,6 +338,7 @@ mysqli_close($db_handle);
  <div id="section">
  <?php
   $idArticle = $_GET['id'];
+  $_SESSION['id_item']=$idArticle;
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -346,7 +350,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     $sql = "SELECT * FROM item WHERE id_item LIKE '$idArticle'";
     $result = mysqli_query($db_handle, $sql);
     while ($data = mysqli_fetch_assoc($result)) {
-       
+    
     echo "<table class='table1'>";
     echo "<tr>";
     echo "<td> <h3>" . $data['nom_i'] . "</h3>";
@@ -371,15 +375,15 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
     if($data['type_vente']==='Enchere')
     {
-    echo "<td> <a href='#'> <input type='button' value='Enchérir'> </a></td>";
+    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='int' name='enchere' placeholder='montant en euro (€)' required > </br> <input type='submit' value='Enchérir'> </form></td>";
     }
     if($data['type_vente']==='Meilleure Offre')
     {
-    echo "<td> <a href='#'> <input type='button' value='Proposer une offre'></a></td>";
+    echo "<td> <form action='faireoffre.php' method='POST'> <input type='int' name='offre' placeholder='montant en euro (€)' required> <input type='submit' value='Proposer une offre'></a></td>";
     }
     if($data['type_vente']==='Achat Immediat')
     {
-        echo "<td> <a href='#'> <input type='button' value='Achetez-le maintenant'></a></td>";
+        echo "<td> <form action='acheter.php' method='POST'>  <input type='submit' value='Achetez-le maintenant'></a></td>";
     }  
     echo "</tr><tr><td></td><td></td></tr>";
     
