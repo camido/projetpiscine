@@ -9,12 +9,14 @@ $ville= isset($_POST["ville"])? $_POST["ville"] : "";
 $codepostal = isset($_POST["Codepostal"])? $_POST["Codepostal"] : "";
 $pays = isset($_POST["pays"])? $_POST["pays"] : "";
 $numtel = isset($_POST["numtel"])? $_POST["numtel"] : "";
-/*$typecard = isset($_POST["usercard"])? $_POST["usercard"] : "";
+if(<input type=checkbox onclick="document.getElementById('cacher').style.display = 'block';" />)
+
+$typecard = isset($_POST["usercard"])? $_POST["usercard"] : "";
 $numcarte = isset($_POST["numcarte"])? $_POST["numcarte"] : "";
 $nomcarte = isset($_POST["nomcarte"])? $_POST["nomcarte"] : "";
 $codecarte = isset($_POST["codecarte"])? $_POST["codecarte"] : "";
 $datecarte = isset($_POST["datecarte"])? $_POST["datecarte"] : "";
-*/
+
         $database = "ebayece";
 
         $db_handle = mysqli_connect('localhost', 'root', '');
