@@ -1,3 +1,6 @@
+<?php
+    session_start();
+    ?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,7 +148,39 @@
 </script>   
 </head>
 
-<body>
+
+
+<?php
+
+//identifier votre BDD
+$database = "ebayece";
+
+//connectez-vous de la BDD
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+//si la BDD existe
+$ID = $_SESSION['id_utilisateur'];
+    if ($db_found) {
+    //on cherche le livre
+    $sql = "SELECT * FROM vendeur where id_v like '$ID'";
+    $result = mysqli_query($db_handle, $sql);
+    while ($data = mysqli_fetch_assoc($result)) {
+  
+    $target = $data['image_fond'];
+
+    echo "</table>";}
+
+} 
+else {
+echo "Database not found. <br>";
+}
+
+//fermer la connexion
+mysqli_close($db_handle);
+?> 
+    
+
+    <body   style="background-image: url(<?php print $target; ?>)">
    
     <nav class="navbar t">
         <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
@@ -172,33 +207,11 @@
             </ul>
         </div>
     </nav>
-    <?php
 
-//identifier votre BDD
-$database = "ebayece";
+   
 
-//connectez-vous de la BDD
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
-//si la BDD existe
-// $ID = $_SESSION['id_utilisateur'];
-    if ($db_found) {
-    //on cherche le livre
-    $sql = "SELECT * FROM vendeur where id_v like '3'";
-    $result = mysqli_query($db_handle, $sql);
-    while ($data = mysqli_fetch_assoc($result)) {
-    echo '<img src="'.$data['image_fond'].'" width="128" height="117"> </img>';
-    echo "</table>";}
 
-} 
-else {
-echo "Database not found. <br>";
-}
 
-//fermer la connexion
-mysqli_close($db_handle);
-?> 
-        
 
     
     <div id="container">
@@ -219,10 +232,10 @@ mysqli_close($db_handle);
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, $database);
         //si la BDD existe
-       // $ID = $_SESSION['id_utilisateur'];
+       $ID = $_SESSION['id_utilisateur'];
             if ($db_found) {
             //on cherche le livre
-            $sql = "SELECT * FROM vendeur where id_v like '3'";
+            $sql = "SELECT * FROM vendeur where id_v like '$ID'";
             $result = mysqli_query($db_handle, $sql);
 
             
@@ -266,7 +279,7 @@ mysqli_close($db_handle);
         </p>
         <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
       </footer>
-
+  
    
 </body>
 </html>
