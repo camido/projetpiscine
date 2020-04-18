@@ -346,7 +346,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     $sql = "SELECT * FROM item WHERE id_item LIKE '$idArticle'";
     $result = mysqli_query($db_handle, $sql);
     while ($data = mysqli_fetch_assoc($result)) {
-       
+    
     echo "<table class='table1'>";
     echo "<tr>";
     echo "<td> <h3>" . $data['nom_i'] . "</h3>";

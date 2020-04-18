@@ -223,10 +223,11 @@
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
+            $id=$data['id_item'];
             echo "<br><table align='center'>";
             echo "<caption> </caption>";
             echo "<tr>";
-            echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
+            echo "<th> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3></a> ";
             echo " #" . $data['id_item'] . "</th>"; 
             echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
             echo "<td> </td>";
