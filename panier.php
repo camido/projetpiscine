@@ -179,7 +179,7 @@
     
     <div id="container">
         
-        <form action="inscriptionacheteur.php" method="POST">
+        <form action="paiement.html" method="POST">
         
 
      <section>
@@ -188,7 +188,7 @@
 
             
             <input type="submit" id='submit' value='Valider' >
-
+</section>
 
         </form>
     </div>
