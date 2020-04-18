@@ -157,7 +157,7 @@
     <div id="container">
         <!-- zone de connexion -->
         
-        <form>
+        <form action="admin2A.php" method="post" enctype="multipart/form-data">
             
             <h1>
                 <table>
@@ -169,11 +169,22 @@
                 </table>
             </h1>
             
+            <p><label><b> Catégorie de l'item : </b></label><br>
+                <input type="radio" name="categorie"> Feraille ou Tresor <br>
+                <input type="radio" name="categorie"> Bon pour le Musee <br>
+                <input type="radio" name="categorie"> Accessoire VIP <br></p>
+
             <label><b>Nom* :</b></label>
             <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>
             
-            <label><b>Photo* :</b></label>
-            <input type="file" name="item_photo" id="item_photo" required><br>
+            <label><b>Photo 1* :</b></label>
+            <input type="file" name="item_photo1" id="item_photo1" required><br>
+
+            <label><b>Photo 2 :</b></label>
+            <input type="file" name="item_photo2" id="item_photo2"><br>
+
+            <label><b>Photo 3 :</b></label>
+            <input type="file" name="item_photo3" id="item_photo3"><br>
 
             <label><b>Description* :</b></label>
             <input type="text" placeholder="Ecrire une description" name="item_description" required size=2>
@@ -191,12 +202,16 @@
             </table>
 
             <label><b>Date de fin* :</b></label>
-            <input type="date" name="item_date" id="item_date" required><br>
+            <input type="datetime-local" name="item_date" id="item_date" required><br>
 
-            <a>*: champs obligatoires</a>
+            <a>*: champs obligatoires</a><br>
+
+            <input type="submit" value="Ajouter">  <br> 
 
 
         </form>
+
+
     </div>
 
     <footer class="container-fluid">
