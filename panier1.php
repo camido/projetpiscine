@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE: ADMIN - ajouter un item</title>
+<title>Ebay ECE - Panier </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -34,6 +34,14 @@ session_start();
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 40px;
     }
+    .nav-link, .navbar-center {
+    color: rgb(248, 244, 244);
+    cursor: pointer;
+    font-style: oblique;
+    font-weight: 200;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    }
     .nav-link {
     margin-right: 1em !important;
     }
@@ -43,48 +51,28 @@ session_start();
     .navbar-collapse {
     justify-content: flex-end;
     }
-    .navbar-dc {
-
-    left : 90%;
-
-    position: absolute;
-
-    top : 30%;
-
-
-    }
-
-    .navbar-dc button {
-
-    border:1px solid #000000;
-
-    background-color: #3d3d3d
-
-    border-radius: 0;
-
-    color: #000000;
-    }
-
-    .navbar-dc button:hover {
-
-    border:1px solid rgb(0, 0, 0);
-
-    background-color: #ddb775;
-
-    color: rgb(78, 78, 78)
-    }
-
     .header {
     background-image: url('pdg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
     }
+    .form-check .form-check-input {
+    opacity: 1;
+    height: inherit;
+    width: inherit;
+    overflow: visible;
+    }
     #container{
         width:400px;
         margin-left: 20%;
         margin-top:10%;
         margin-bottom:10%;
+    }
+    .navbar-dc {
+    left : 80%;
+    position: absolute;
+    top : 30%;
     }
 
 
@@ -97,14 +85,15 @@ session_start();
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
     #container h1{
-        width: 50%;
+        width: 30%;
         margin: 0 auto;
         padding-bottom: 10px;
     }
     #container h2{
-        width: 50%;
+        width: 70%;
         margin: 0 auto;
         padding-bottom: 10px;
+        text-align: center;
     }
     
     
@@ -146,21 +135,18 @@ session_start();
 
 <body>
    
-<<<<<<< HEAD:panier.php
     <nav class="navbar t">
         <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
-=======
-    <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="#">Ebay ECE: ADMIN</a>
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
+            <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
+            
         </div>
+    </nav>
+    <nav class="navbar navbar-expand-md">
 
-<<<<<<< HEAD:panier.php
         
         <div class="center navbar-center" id="main-navigation">
             
@@ -192,121 +178,88 @@ session_start();
                 
             </ul>
         </div>
-=======
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
     </nav>
     
     <div id="container">
-        <!-- zone de connexion -->
         
-<<<<<<< HEAD:panier.php
-        <form action="paiement.html" method="POST">
+    <form action="paiement.html" method="POST">
         
 
-    <section>
-        <?php
-        $ID=$_SESSION['id_utilisateur'];
-        echo "<h2>Panier</h2><br>";
-
-        $database = "ebayece";
-
-        //connectez-vous de la BDD
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        //si la BDD existe
-        if ($db_found) {
+        <section>
+            <?php
             
-
-            $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
-            
-            $result = mysqli_query($db_handle, $sql);
-=======
-        <form action="admin3.php" method="post" enctype="multipart/form-data"> 
-            
-            <h1>
-                <table>
-                    <tr>
-                        <th>
-                            Supprimer item : 
-                        </th>
-                    </tr>
-                </table>
-            </h1>
-            
-            <label><b>Nom :</b></label>
-            <input type="text" placeholder="Nom de l'item" name="item_name" required>
-            
-
-            <label><b>Numero :</b></label>
-            <input type="text" placeholder="Numero de l'item" name="item_num" required>
-
-             <label><b>Catégorie de l'item : </b></label> <br>
-             <p>
-                <input type="radio" name="item_categorie"> Feraille ou tresor <br>
-                <input type="radio" name="item_categorie"> Bon pour le musee <br>
-                <input type="radio" name="item_categorie"> Accessoire VIP <br>
-            </p>
-
-            <input type="submit" value="Supprimer">
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
-
-            if(mysqli_num_rows($result) === 0)
+            $ID=$_SESSION['id_utilisateur'];
+            echo "<h2>Panier</h2><br>";
+    
+            $database = "ebayece";
+    
+            //connectez-vous de la BDD
+            $db_handle = mysqli_connect('localhost', 'root', '');
+            $db_found = mysqli_select_db($db_handle, $database);
+            //si la BDD existe
+            if ($db_found) {
+                
+    
+                $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
+                
+                $result = mysqli_query($db_handle, $sql);
+    
+                if(mysqli_num_rows($result) === 0)
+                {
+                    echo " <h2> Ce panier est vide </h2>";
+                }
+                else{
+                    $total=0;
+                    while ($data = mysqli_fetch_assoc($result)) 
+                    {
+                    $total= $total + $data['prix'] ;
+                    $photo=$data['photo_i'];
+                    $id=$data['id_item'];
+                    
+                    echo "<table >";
+                    echo "<tr>
+                    <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
+                    echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+                    echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
+                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+                    if($data['type_vente']==='Enchere')
+                    {
+                        echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                    }
+                    if($data['type_vente']==='Meilleure Offre')
+                    {
+                        echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+                    }
+                    if($data['type_vente']==='Achat Immediat')
+                    {
+                        echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                    }  
+                    
+                    echo "</tr><tr>
+                    <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
+                     <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
+                    
+                    
+                    }
+                    echo "</table>";
+                    echo " <h3> SOUS-TOTAL : $total € </h3>";
+                    echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
+                    
+                }
+                
+    
+    } 
+            else 
             {
-                echo " <h2> Ce panier est vide </h2>";
+                echo "Database not found. <br>";
             }
-            else{
-                $total=0;
-                while ($data = mysqli_fetch_assoc($result)) 
-                {
-                $total= $total + $data['prix'] ;
-                $photo=$data['photo_i'];
-                $id=$data['id_item'];
                 
-                echo "<table >";
-                echo "<tr>
-                <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
-                echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
-                echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
-                echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
-                if($data['type_vente']==='Enchere')
-                {
-                    echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
-                }
-                if($data['type_vente']==='Meilleure Offre')
-                {
-                    echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
             
-                }
-                if($data['type_vente']==='Achat Immediat')
-                {
-                    echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
-                }  
+    
+              ?>  
                 
-                echo "</tr><tr>
-                <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
-                 <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
-                
-                
-                }
-                echo "</table>";
-                echo " <h3> SOUS-TOTAL : $total € </h3>";
-                echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
-                
-            }
-            
-
-} 
-        else 
-        {
-            echo "Database not found. <br>";
-        }
-            
-        
-
-          ?>  
-            
-
-        </form>
+    
+            </form>
     </div>
 
     <footer class="container-fluid">
