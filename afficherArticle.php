@@ -339,7 +339,6 @@ mysqli_close($db_handle);
  <div id="section">
  <?php
   $idArticle = $_GET['id'];
-  $_SESSION['id_item']=$idArticle;
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -380,8 +379,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='number' name='enchere' placeholder='montant en euro (€)' min='$prix' required > </br> <input type='submit' value='Enchérir'> </form></td>";
     }
     if($data['type_vente']==='Meilleure Offre')
-    {
-    echo "<td> <form action='faireoffre.php' method='POST'> <input type='number' name='offre' placeholder='montant en euro (€)' min='1' required> </br> <input type='submit' value='Proposer une offre'></a></td>";
+    {                                          
+    echo "<td> <form action='faireoffre.php' method='POST'> 
+    Item numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idArticle' readonly='readonly' style='width:40px;'><br>
+    <input type='number' name='offre' placeholder='montant en euro (€)' required> </br> <input type='submit' value='Proposer une offre'></a></td>";
     }
     if($data['type_vente']==='Achat Immediat')
     {
