@@ -258,6 +258,7 @@ body, html{height:100%;}
                     </div>
                   </li>
                 <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
                 <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
@@ -380,7 +381,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     }
     if($data['type_vente']==='Meilleure Offre')
     {
-    echo "<td> <form action='faireoffre.php' method='POST'> <input type='int' name='offre' placeholder='montant en euro (€)' required> <input type='submit' value='Proposer une offre'></a></td>";
+    echo "<td> <form action='faireoffre.php' method='POST'> <input type='number' name='offre' placeholder='montant en euro (€)' min='1' required> </br> <input type='submit' value='Proposer une offre'></a></td>";
     }
     if($data['type_vente']==='Achat Immediat')
     {
