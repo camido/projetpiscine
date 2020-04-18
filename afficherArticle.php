@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -335,6 +338,7 @@ mysqli_close($db_handle);
  <div id="section">
  <?php
   $idArticle = $_GET['id'];
+  $_SESSION['id_item']=$idArticle;
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -371,15 +375,15 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
     if($data['type_vente']==='Enchere')
     {
-    echo "<td> <a href='#'> <input type='button' value='Enchérir'> </a></td>";
+    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='int' name='enchere' placeholder='montant en euro (€)' required > </br> <input type='submit' value='Enchérir'> </form></td>";
     }
     if($data['type_vente']==='Meilleure Offre')
     {
-    echo "<td> <a href='#'> <input type='button' value='Proposer une offre'></a></td>";
+    echo "<td> <form action='faireoffre.php' method='POST'> <input type='int' name='offre' placeholder='montant en euro (€)' required> <input type='submit' value='Proposer une offre'></a></td>";
     }
     if($data['type_vente']==='Achat Immediat')
     {
-        echo "<td> <a href='#'> <input type='button' value='Achetez-le maintenant'></a></td>";
+        echo "<td> <form action='acheter.php' method='POST'>  <input type='submit' value='Achetez-le maintenant'></a></td>";
     }  
     echo "</tr><tr><td></td><td></td></tr>";
     
