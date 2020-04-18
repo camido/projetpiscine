@@ -157,7 +157,7 @@
     <div id="container">
         <!-- zone de connexion -->
         
-        <form>
+        <form action="admin3.php" method="post" enctype="multipart/form-data"> 
             
             <h1>
                 <table>
@@ -174,13 +174,13 @@
             
 
             <label><b>Numero :</b></label>
-            <input type="text" placeholder="Numero de l'item" name="item_description" required>
+            <input type="text" placeholder="Numero de l'item" name="item_num" required>
 
              <label><b>Catégorie de l'item : </b></label> <br>
              <p>
-                <input type="radio" name="categorie"> Feraille ou tresor <br>
-                <input type="radio" name="categorie"> Bon pour le musee <br>
-                <input type="radio" name="categorie"> Accessoire VIP <br>
+                <input type="radio" name="item_categorie"> Feraille ou tresor <br>
+                <input type="radio" name="item_categorie"> Bon pour le musee <br>
+                <input type="radio" name="item_categorie"> Accessoire VIP <br>
             </p>
 
             <input type="submit" value="Supprimer">

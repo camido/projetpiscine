@@ -1,8 +1,8 @@
 <?php   
 
-    $target_dir = "Items/";
+    $target_dir = "items/";
     $target_file = $target_dir . basename($_FILES["item_photo1"]["name"]);
-    $uploadOk = 1;p
+    $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
     if(isset($_POST["button1"])) {
@@ -42,11 +42,10 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }
-if ($item_photo1 != "")
-{
-    $target_dir = "Items/";
+
+    $target_dir = "items/";
     $target_file = $target_dir . basename($_FILES["item_photo2"]["name"]);
-    $uploadOk = 1;p
+    $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
     if(isset($_POST["button1"])) {
@@ -86,13 +85,13 @@ if ($item_photo1 != "")
             echo "Sorry, there was an error uploading your file.";
         }
     }
-}
 
-if ($item_photo2 !="")
-{
-    $target_dir = "Items/";
+
+
+
+    $target_dir = "items/";
     $target_file = $target_dir . basename($_FILES["item_photo3"]["name"]);
-    $uploadOk = 1;p
+    $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
     if(isset($_POST["button1"])) {
@@ -132,7 +131,6 @@ if ($item_photo2 !="")
             echo "Sorry, there was an error uploading your file.";
         }
     }
-}
 
 
     //récupérer les données venant de formulaire  $titre = isset($_POST["titre"])? $_POST["titre"] : "";
@@ -156,8 +154,7 @@ if ($item_photo2 !="")
     
 
 
-    if (mysqli_num_rows($result) === 0 && mysqli_num_rows($result1) === 0 && mysqli_num_rows($result2) === 0 )
-    {
+
     if ($item_photo2 != "" && $item_photo3!= "")
     {
       $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, date_fin)
@@ -187,6 +184,6 @@ if ($item_photo2 !="")
         {    
             echo "Database not found";   
         }  
-    } 
+    
     mysqli_close($db_handle);
     ?>

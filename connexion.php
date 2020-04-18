@@ -107,7 +107,7 @@
                                         $_SESSION['id_utilisateur']=$data['id_a'];
                                     }
                                     $_SESSION['type_utilisateur']= 'acheteur';
-                                    //header('Location: acheteur1.html');
+                                    header('Location: accueilacheteur.php');
                                 }
                         }
                     }
