@@ -287,7 +287,9 @@
         
         //afficher les résultats
         while ($data = mysqli_fetch_assoc($result)) {
-        echo "<br><table align='center'>";
+            if(!is_null($data['nom_carte']))
+            {
+            echo "<br><table align='center'>";
 
             echo "<tr>";
             echo " <th> <U> Type de carte</U> : " . $data['type_de_carte'] . "</th>";
@@ -304,9 +306,13 @@
 
             echo "<th> <U> Code de securité </U> : " . $data['code_securite'] . "</th>";        
             echo "</tr>";
-
-            }
             echo "</table>";
+            }else 
+            {
+                echo "<br>Informations bancaires non renseignées.<br> Elles vous seront demandées lors de votre premier achat.";
+            }
+            
+        }
             } else {
             echo "Database not found. <br>";
             }

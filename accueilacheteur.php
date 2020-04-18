@@ -144,18 +144,7 @@
     caption {
     font-family:sans-serif;
     }
-    h3{
     
-    color: rgb(0,0,0);
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 30px;
-    font-style: oblique;
-    font-weight: 200;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
-
-}
     
 </style>
 <script type="text/javascript">
@@ -168,7 +157,7 @@
 <body>
     
     <nav class="navbar t">
-        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
+        <a class="navbar-brand" href="#">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -202,8 +191,8 @@
                       <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -234,11 +223,10 @@
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
-            $id=$data['id_item'];
             echo "<br><table align='center'>";
             echo "<caption> </caption>";
             echo "<tr>";
-            echo "<th> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+            echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
             echo " #" . $data['id_item'] . "</th>"; 
             echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
             echo "<td> </td>";

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,13 +185,79 @@
         <form action="paiement.html" method="POST">
         
 
-     <section>
-                <h2>Panier</h2><br>
-                <p>
+    <section>
+        <?php
+        $ID=$_SESSION['id_utilisateur'];
+        echo "<h2>Panier</h2><br>";
 
+        $database = "ebayece";
+
+        //connectez-vous de la BDD
+        $db_handle = mysqli_connect('localhost', 'root', '');
+        $db_found = mysqli_select_db($db_handle, $database);
+        //si la BDD existe
+        if ($db_found) {
             
-            <input type="submit" id='submit' value='Valider' >
-</section>
+
+            $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
+            
+            $result = mysqli_query($db_handle, $sql);
+
+            if(mysqli_num_rows($result) === 0)
+            {
+                echo " <h2> Ce panier est vide </h2>";
+            }
+            else{
+                $total=0;
+                while ($data = mysqli_fetch_assoc($result)) 
+                {
+                $total= $total + $data['prix'] ;
+                $photo=$data['photo_i'];
+                $id=$data['id_item'];
+                
+                echo "<table >";
+                echo "<tr>
+                <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
+                echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+                echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
+                echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+                if($data['type_vente']==='Enchere')
+                {
+                    echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                }
+                if($data['type_vente']==='Meilleure Offre')
+                {
+                    echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+            
+                }
+                if($data['type_vente']==='Achat Immediat')
+                {
+                    echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                }  
+                
+                echo "</tr><tr>
+                <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
+                 <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
+                
+                
+                }
+                echo "</table>";
+                echo " <h3> SOUS-TOTAL : $total € </h3>";
+                echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
+                
+            }
+            
+
+} 
+        else 
+        {
+            echo "Database not found. <br>";
+        }
+            
+        
+
+          ?>  
+            
 
         </form>
     </div>
