@@ -372,10 +372,11 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "</tr>";
     $image = $data['photo_i'];
     echo "<tr>";
+    $prix=$data['prix'];
     echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
     if($data['type_vente']==='Enchere')
     {
-    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='int' name='enchere' placeholder='montant en euro (€)' required > </br> <input type='submit' value='Enchérir'> </form></td>";
+    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='number' name='enchere' placeholder='montant en euro (€)' min='$prix' required > </br> <input type='submit' value='Enchérir'> </form></td>";
     }
     if($data['type_vente']==='Meilleure Offre')
     {
