@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>EbayECE - Acceuilacheteur</title>
+<title>Ebay ECE -Moncompte</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -11,17 +12,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <style type="text/css">
-    body, html{height:100%;}
     body {
-    background-image: url('images_projet/pdg.jpg');   
+    background-image: url('images_projet/pdg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
-    text-align:center;
-    min-height: 100vh;
     }
 
-
+   
     /*--- navigation bar ---*/
     .navbar {
     background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
@@ -29,13 +27,6 @@
     .navbar-expand-md {
         background-image:linear-gradient(60deg, #dbb775, rgb(205, 198, 180));
     }
-    .navbar-dc {
-    left : 80%;
-    position: absolute;
-    top : 30%;
-    }
-
-
     .nav-link, .navbar-brand {
     color: rgb(7, 7, 7);
     cursor: pointer;
@@ -62,28 +53,61 @@
     justify-content: flex-end;
     }
     .header {
-    color: rgb(0,0,0);
+    background-image: url('pdg.jpg');
+    background-size: cover;
     background-position: center;
-    position:center;
+    position: relative;
+    }
+    .form-check .form-check-input {
+    opacity: 1;
+    height: inherit;
+    width: inherit;
+    overflow: visible;
     }
     #container{
         width:400px;
-        margin:0 auto;
+        length : 800px;
+        margin-left: 20%;
         margin-top:10%;
         margin-bottom:10%;
     }
+    .navbar-dc {
+    left : 80%;
+    position: absolute;
+    top : 30%;
+    }
 
 
-
-    h2{
-        color: rgb(255,255,255);
-        width: 100%;
+    /* carre blanc */
+    form {
+        width:200%;
+        padding: 30px;
+        border: 1px solid #f1f1f1;
+        background: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    #container h1{
+        width: 30%;
         margin: 0 auto;
-        padding-top: 30px;
-        font-style: oblique;
-        font-weight: 200;
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 50px;
+        padding-bottom: 10px;
+    }
+    #container h2{
+        width: 70%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    #container h3{
+        width: 70%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+        text-align: center;
+        color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-style: oblique;
+    font-weight: 200;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
     }
     
     /* Full-width inputs */
@@ -106,44 +130,12 @@
         cursor: pointer;
         width: 100%;
     }
-    main
-    {
-        margin: 3rem 0;
-    }
     footer {
       background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
       color: white;
       padding: 15px;
-      bottom:0;; 
-      left: 0; 
-      right: 0;
-      margin-top: auto;
     }
-    table {
-    border: medium solid #000000;
-    border-collapse: collapse;
-    border-color: #84601F ;
-    border-width: 1px 1em;;
-    width: 50%;
-    }
-    th {
-    font-family: monospace;
-    width: 30%;
-    padding: 5px;
-    text-align: center;
-    background-color: #DCB877;
-    background-image: url(sky.jpg);
-    }
-    td {
-    font-family: sans-serif;
-    width: 40%;
-    padding: 5px;
-    text-align: left;
-    background-color: #ffffff;
-    }
-    caption {
-    font-family:sans-serif;
-    }
+    
     
     
 </style>
@@ -155,18 +147,19 @@
 </head>
 
 <body>
-    
+   
     <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg"> Déconnexion </button>  </a>
+            <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
+            
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
-        
+
         
         <div class="center navbar-center" id="main-navigation">
             
@@ -176,9 +169,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
+                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
+                      <a class="dropdown-item" href="#">Bon pour les musées</a>
+                      <a class="dropdown-item" href="#">Accésoires VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -186,9 +179,9 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
+                      <a class="dropdown-item" href="#">Enchère</a>
+                      <a class="dropdown-item" href="#">Meilleure Offre</a>
+                      <a class="dropdown-item" href="#">Achat immédiat</a>
                     </div>
                   </li>
                 <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
@@ -199,56 +192,117 @@
             </ul>
         </div>
     </nav>
-       
-        <header class="page-header container-fluid">
-            <div class="overlay"></div> -->
+    
+    <div id="container">
+        
+        <form action="inscriptionacheteur.php" method="POST">
+        
 
-        <h2>  Quelques uns de nos produits : </h2>
-   
-   
+     <section>
+                <h2>Mon compte</h2><br><br>
+                
 
-        <?php
+                <h3><U>Information client</U></h3>
+            
+             <?php
 
         //identifier votre BDD
         $database = "ebayece";
+
         //connectez-vous de la BDD
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, $database);
         //si la BDD existe
+       // $ID = $_SESSION['id_utilisateur'];
             if ($db_found) {
             //on cherche le livre
-            $sql = "SELECT * FROM item";
+            $sql = "SELECT * FROM acheteur where id_a like '0'";
             $result = mysqli_query($db_handle, $sql);
 
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
             echo "<br><table align='center'>";
-            echo "<caption> </caption>";
+           
             echo "<tr>";
-            echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
-            echo " #" . $data['id_item'] . "</th>"; 
-            echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
-            echo "<td> </td>";
-            
+            echo "<th> <U> Pseudo</U> :  " . $data['pseudo_a'] . "</th> ";
+            echo "<th> <U> E-mail</U> : " . $data['email_a'] . "</th>"; 
             echo "</tr>";
-            $image = $data['photo_i'];
-            echo "<tr>";
-            echo "<th>" . "<img src='$image' height='140' width='100'>" ."<br><br></th>";
-            echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
-            if($data['type_vente']==='Enchere')
-            {
-                echo "<td> Le prix de départ est : " . $data['prix'] . " € <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
-            }
-            if($data['type_vente']==='Meilleure Offre')
-            {
-                echo "<td> Vous proposez votre prix.  </td>";
 
-            }
-            if($data['type_vente']==='Achat Immediat')
-            {
-                echo "<td> Le prix est : ". $data['prix'] . " € </td>";
-            }  
+            echo "<tr>";
+            echo " <th> <U>Nom</U> : " . $data['nom_a'] . "</th>"; 
+            echo " <th> <U> Prenom</U> : " . $data['prenom_a'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo " <th> <U> Adresse 1</U> : " . $data['adresse_1'] . "</th>";
+            echo "</tr>";
+            echo " <th> <U> Adresse 2</U> : " . $data['adresse_2'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<th>  <U> Ville</U> : " . $data['ville'] . "</th>";
+            echo "<th> <U> Code Postal</U> :" . $data['code_postal'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo " <th> <U> Pays</U> : " . $data['pays'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo " <th> <U> Numéro de tel</U> : " . $data['numero_tel'] . "</th>";
+            echo "</tr>";
+
+        }
+        echo "</table>";
+        } else {
+        echo "Database not found. <br>";
+        }
+    
+        //fermer la connexion
+    mysqli_close($db_handle);
+    ?> 
+    <br><br><br>
+
+        <h3><U>Informations bancaires</U></h3>
+        <br>
+
+            
+
+    <?php
+
+    //identifier votre BDD
+    $database = "ebayece";
+
+    //connectez-vous de la BDD
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
+    //si la BDD existe
+   // $ID = $_SESSION['id_utilisateur'];
+        if ($db_found) {
+        //on cherche le livre
+        $sql = "SELECT * FROM acheteur where id_a like '0'";
+        $result = mysqli_query($db_handle, $sql);
+
+        
+        //afficher les résultats
+        while ($data = mysqli_fetch_assoc($result)) {
+        echo "<br><table align='center'>";
+
+            echo "<tr>";
+            echo " <th> <U> Type de carte</U> : " . $data['type_de_carte'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<th> <U> Numéro de carte</U> : " . preg_replace('/(\d)/', '*', $data['num_carte']) . "</th>";
+            echo "<th> <U> Nom sur la carte</U> : " . $data['nom_carte'] . "</th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<th> <U>Date d'expiration</U> : " .  $data['date_expi'] . " </th>";
+
+
+            echo "<th> <U> Code de securité </U> : " . $data['code_securite'] . "</th>";        
             echo "</tr>";
 
             }
@@ -260,11 +314,14 @@
             //fermer la connexion
         mysqli_close($db_handle);
         ?>  
-        
-   </header> 
 
-    <footer class="container-fluid">
-        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        
+
+        </form>
+    </div>
+
+    <footer class="container-fluid text-center">
+        <h6 class="text-uppercase font-weight-bold ">Contact</h6>
         <p>
         37, quai de Grenelle, 75015 Paris, France <br>
         info@webDynamique.ece.fr <br>
@@ -274,6 +331,6 @@
         <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
       </footer>
 
-      
+   
 </body>
 </html>

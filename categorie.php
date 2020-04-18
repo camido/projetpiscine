@@ -209,9 +209,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="#">Bon pour les Musées</a>
-                      <a class="dropdown-item" href="#">Accessoire VIP</a>
+                     <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -219,9 +219,9 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
                 <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
@@ -237,12 +237,13 @@
             <div class="overlay"></div> 
 
            
-            <div style='text-align:center'>
-                 <h3>  Bienvenue dans la catégorie Ferraille ou Trésor ! </h3>
-             </div>;
+            
 
             <?php
-
+ $catego = $_GET['categorie'];
+ echo "<div style='text-align:center'>
+ <h3>  Bienvenue dans la catégorie " . $catego . " ! </h3>
+    </div>";
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -251,7 +252,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 //si la BDD existe
     if ($db_found) {
     //on cherche le livre
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND type_vente LIKE 'Achat Immediat'";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND type_vente LIKE 'Achat Immediat'";
     $result = mysqli_query($db_handle, $sql);
 
     
@@ -259,10 +260,12 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "<table class='table2' > <tr> <td><h2>  Achat Immédiat : </h2> </td> <td><h2>  Enchere : </h2></td><td><h2>  Meilleure Offre : </h2></td></tr> </table>";
     echo "<table class='table1' align='left'  >";
     
-    while ($data = mysqli_fetch_assoc($result)) {
 
+    while ($data = mysqli_fetch_assoc($result)) {
+    $nom=$data['nom_i'];
+    $id=$data['id_item'];
     echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+    echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";
@@ -294,7 +297,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
     // DEUXIEME COLONNE
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND type_vente LIKE 'Enchere'";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND type_vente LIKE 'Enchere'";
     $result = mysqli_query($db_handle, $sql);
 
     
@@ -302,10 +305,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     
     echo "<table class='table1' align='left' >";
     while ($data = mysqli_fetch_assoc($result)) {
- 
-    echo "<caption> </caption>";
+    $nom=$data['nom_i'];
+    $id=$data['id_item'];
     echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+    echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";
@@ -335,16 +338,17 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
     // TROISIEME COLONNE
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND type_vente LIKE 'Meilleure Offre'";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND type_vente LIKE 'Meilleure Offre'";
     $result = mysqli_query($db_handle, $sql);
 
     
     //afficher les résultats
     echo "<table class='table1' align='left' >";
     while ($data = mysqli_fetch_assoc($result)) {
-    echo "<caption> </caption>";
-    echo "<tr>";
-    echo "<th bgcolor='#DCB877'> <h3>" . $data['nom_i'] . "</h3> ";
+        $nom=$data['nom_i'];
+        $id=$data['id_item'];
+        echo "<tr>";
+        echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
     echo " #" . $data['id_item'] . "</th>"; 
     echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
     echo "<td> </td>";

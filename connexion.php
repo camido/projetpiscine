@@ -1,5 +1,6 @@
 <?php
     session_start();
+    session_unset();
 
     $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "";
     $mdp = isset($_POST["mdp"])? $_POST["mdp"] : "";
