@@ -157,7 +157,7 @@
 <body>
     
     <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -221,7 +221,15 @@
         //si la BDD existe
             if ($db_found) {
             //on cherche le livre
-            $sql = "SELECT * FROM item WHERE type_vente LIKE '$vente'";
+            if($vente === 'Achat Immediat' || $vente === 'Meilleure Offre')
+            {
+                $sql = "SELECT * FROM item WHERE type_vente LIKE '$vente' OR type_vente LIKE 'Meilleure Offre et Achat Immediat'";
+            }
+            else
+            {
+                $sql = "SELECT * FROM item WHERE type_vente LIKE '$vente' ";
+            }
+            
             $result = mysqli_query($db_handle, $sql);
 
             
@@ -240,20 +248,22 @@
             $image = $data['photo_i'];
             echo "<tr>";
             echo "<th>" . "<img src='$image' height='140' width='100'>" ."<br><br></th>";
-            echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+            echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td><td>";
             if($data['type_vente']==='Enchere')
             {
-                echo "<td> Le prix de départ est : " . $data['prix'] . " € <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                echo "Le prix de l'enchère est : " . $data['prix'] . " € <br> Date de fin de l'enchère : " . $data['date_fin'] . " ";
             }
-            if($data['type_vente']==='Meilleure Offre')
+            if($data['type_vente']==='Meilleure Offre' || $data['type_vente']==='Meilleure Offre et Achat Immediat')
             {
-                echo "<td> Vous proposez votre prix.  </td>";
-
+                echo " Vous faîtes une offre. ";
+        
             }
-            if($data['type_vente']==='Achat Immediat')
+            if($data['type_vente']==='Achat Immediat' || $data['type_vente']==='Meilleure Offre et Achat Immediat')
             {
-                echo "<td> Le prix est : ". $data['prix'] . " € </td>";
+                echo " Achetez directement à : ". $data['prix'] . " € ";
             }  
+        
+            echo "</td>";
             echo "</tr>";
 
             }

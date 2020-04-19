@@ -235,7 +235,22 @@ session_start();
                     {
                         echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
                     }  
-                    
+                    if($data['type_vente']==='Meilleure Offre et Achat Immediat')
+                    {
+                        $item=$data['id_item'];
+                        $sql2 = "SELECT * FROM meilleureoffre WHERE id_ite = '$item' AND id_ac = '$ID'";
+                        $result2 = mysqli_query($db_handle, $sql2);
+                        
+                        if(mysqli_num_rows($result2) === 0)
+                        {
+                            echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                        }
+                        else
+                        {
+                            echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+                        }
+
+                    }
                     echo "</tr><tr>
                     <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
                      <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
