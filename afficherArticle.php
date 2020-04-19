@@ -258,6 +258,7 @@ body, html{height:100%;}
                     </div>
                   </li>
                 <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
                 <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
@@ -338,7 +339,6 @@ mysqli_close($db_handle);
  <div id="section">
  <?php
   $idArticle = $_GET['id'];
-  $_SESSION['id_item']=$idArticle;
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -372,14 +372,17 @@ $db_found = mysqli_select_db($db_handle, $database);
     echo "</tr>";
     $image = $data['photo_i'];
     echo "<tr>";
+    $prix=$data['prix'];
     echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
     if($data['type_vente']==='Enchere')
     {
-    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='int' name='enchere' placeholder='montant en euro (€)' required > </br> <input type='submit' value='Enchérir'> </form></td>";
+    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='number' name='enchere' placeholder='montant en euro (€)' min='$prix' required > </br> <input type='submit' value='Enchérir'> </form></td>";
     }
     if($data['type_vente']==='Meilleure Offre')
-    {
-    echo "<td> <form action='faireoffre.php' method='POST'> <input type='int' name='offre' placeholder='montant en euro (€)' required> <input type='submit' value='Proposer une offre'></a></td>";
+    {                                          
+    echo "<td> <form action='faireoffre.php' method='POST'> 
+    Item numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idArticle' readonly='readonly' style='width:40px;'><br>
+    <input type='number' name='offre' placeholder='montant en euro (€)' required> </br> <input type='submit' value='Proposer une offre'></a></td>";
     }
     if($data['type_vente']==='Achat Immediat')
     {

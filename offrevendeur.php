@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE - Panier </title>
+<title>Ebay ECE - Messagerie </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -64,8 +64,9 @@ session_start();
     overflow: visible;
     }
     #container{
-        width:400px;
-        margin-left: 20%;
+        width:700px;
+        background: #FAEED8;
+        margin-left: 25%;
         margin-top:10%;
         margin-bottom:10%;
     }
@@ -110,19 +111,22 @@ session_start();
     /* Set a style for all buttons */
     input[type=submit] {
         background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-        color: white;
+        color: black;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
         cursor: pointer;
-        width: 100%;
+        width: 30%;
     }
     footer {
       background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
       color: white;
       padding: 15px;
     }
-    
+
+    table {
+    margin:20px;
+    }
     
     
 </style>
@@ -143,37 +147,26 @@ session_start();
         <div class="navbar-dc">
             <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
             
+            
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
 
         
-        <div class="center navbar-center" id="main-navigation">
+    <div class="center navbar-center" id="main-navigation">
             
             <ul class="navbar-nav">
+                
+                <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Categories
+                      Gérer mes ventes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
+                    <a class="dropdown-item" href="#">Retirer items en vente</a>
+                      <a class="dropdown-item" href="offrevendeur.php">Mes demandes d'offre</a>
                     </div>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Achat
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
-                    </div>
-                  </li>
-                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
-                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -183,14 +176,15 @@ session_start();
     
     <div id="container">
         
-    <form action="paiement.html" method="POST">
+ 
         
 
         <section>
             <?php
             
             $ID=$_SESSION['id_utilisateur'];
-            echo "<h2>Panier</h2><br>";
+            $TYPE=$_SESSION['type_utilisateur'];
+            echo "<br><h2>Votre messagerie</h2><br>";
     
             $database = "ebayece";
     
@@ -200,56 +194,98 @@ session_start();
             //si la BDD existe
             if ($db_found) {
                 
-    
-                $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
+                echo "<br>";
+                if($TYPE === 'vendeur')
+                {
+                $sql = "SELECT * FROM meilleureoffre WHERE EXISTS (SELECT * FROM item WHERE id_ite = id_item AND '$ID' = id_v)";
+                }
+                if($TYPE === 'admin')
+                {
+                $sql = "SELECT * FROM meilleureoffre WHERE EXISTS (SELECT * FROM item WHERE id_ite = id_item AND '$ID' = id_admin)";
+                }
                 
                 $result = mysqli_query($db_handle, $sql);
     
                 if(mysqli_num_rows($result) === 0)
                 {
-                    echo " <h2> Ce panier est vide </h2>";
+                    echo " <h2> Vous n'avez pas encore reçu d'offres. </h2>";
                 }
                 else{
+                    
                     $total=0;
-                    while ($data = mysqli_fetch_assoc($result)) 
+                    while ($data2 = mysqli_fetch_assoc($result)) 
                     {
+                        $item=$data2['id_ite'];
+                        $sql1 = "SELECT * FROM item WHERE id_item = $item";
+                
+                        $result1 = mysqli_query($db_handle, $sql1);
+                        $data = mysqli_fetch_assoc($result1);
+                    
                     $total= $total + $data['prix'] ;
                     $photo=$data['photo_i'];
                     $id=$data['id_item'];
                     
                     echo "<table >";
-                    echo "<tr>
+                    echo "<tr >
                     <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
                     echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
                     echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
-                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
-                    if($data['type_vente']==='Enchere')
+                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] ."</td>";
+                    
+                    if($data2['proposition_a']==='0')
                     {
-                        echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                        echo "<td align='left' width=25%> <h2> En attente d'une réponse de l'acheteur.  <h2></td>";
                     }
-                    if($data['type_vente']==='Meilleure Offre')
+                    else
                     {
-                        echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+                        echo "<td width=25%> <h2> L'acheteur vous propose " . $data2['proposition_a'] . " € </h2></td>";
                     }
-                    if($data['type_vente']==='Achat Immediat')
-                    {
-                        echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
-                    }  
                     
                     echo "</tr><tr>
                     <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
                      <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
                     
-                    
+                     // FAUX
+
+                    if($data2['proposition_a']==='0')
+                    {
+                        if($data2['nb_prop']<6 && $data2['nb_prop']===1)
+                        {
+                        $idOffre=$data2['id_offre'];
+                        echo "<br><form action='faireoffre.php' method='POST'>
+                        Offre numéro :  <input type='number' min='1' id='submit' name='idOffre' value='$idOffre' readonly='readonly' style='width:30px;'><br>
+                        <input type='number' min='1' id='submit' name='offre' value='Accepter' placeholder='montant en euro (€)'><br> <input type='submit' id='submit' value='Proposer' > </form>";
+                        }
                     }
+                    else 
+                    {
+                        if($data2['nb_prop']<6)
+                        {
+                            $idOffre=$data2['id_offre'];
+                            echo "<br><form action='faireoffre.php' method='POST'>
+                            Offre numéro : <input type='number' min='1' id='submit' name='idOffre' value='$idOffre' readonly='readonly' style='width:40px;'><br>
+                        <input type='number' min='1' id='submit' name='offre' value='Accepter' placeholder='montant en euro (€)'><br> <input type='submit' id='submit' value='Proposer' > </form>";
+                        }
+                        $idItem=$data['id_item'];
+                        echo" <a href='accepteroffre.php?id=$idItem' > <input type='submit' id='submit2' value='Accepter'> </a>" ;
+                        if($data2['nb_prop']=== '6')
+                        {
+                            $idOffre=$data2['id_offre'];
+                            echo" <a href='refuseroffre.php?id=$idOffre' >  <input type='submit' id='submit2' value='Refuser'>  </a>"; 
+                        }
+                    }
+                    
+                    
+                    
+                    
                     echo "</table>";
-                    echo " <h3> SOUS-TOTAL : $total € </h3>";
-                    echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
+                }
+                    
                     
                 }
                 
     
-    } 
+    }
             else 
             {
                 echo "Database not found. <br>";
@@ -260,7 +296,6 @@ session_start();
               ?>  
                 
     
-            </form>
     </div>
 
     <footer class="container-fluid">

@@ -1,8 +1,10 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE -Moncompte</title>
+<title>Ebay ECE - Panier </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -23,9 +25,6 @@
     /*--- navigation bar ---*/
     .navbar {
     background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-    }
-    .navbar-expand-md {
-        background-image:linear-gradient(60deg, #dbb775, rgb(205, 198, 180));
     }
     .nav-link, .navbar-brand {
     color: rgb(7, 7, 7);
@@ -65,9 +64,9 @@
     overflow: visible;
     }
     #container{
-        width:400px;
-        length : 800px;
-        margin-left: 20%;
+        width:700px;
+        background: #FAEED8;
+        margin-left: 25%;
         margin-top:10%;
         margin-bottom:10%;
     }
@@ -97,18 +96,7 @@
         padding-bottom: 10px;
         text-align: center;
     }
-    #container h3{
-        width: 70%;
-        margin: 0 auto;
-        padding-bottom: 10px;
-        text-align: center;
-        color: rgb(0, 0, 0);
-    cursor: pointer;
-    font-style: oblique;
-    font-weight: 200;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    }
+    
     
     /* Full-width inputs */
     input[type=text], input[type=password] {
@@ -123,19 +111,22 @@
     /* Set a style for all buttons */
     input[type=submit] {
         background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-        color: white;
+        color: black;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
         cursor: pointer;
-        width: 100%;
+        width: 30%;
     }
     footer {
       background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
       color: white;
       padding: 15px;
     }
-    
+
+    table {
+    margin:20px;
+    }
     
     
 </style>
@@ -155,6 +146,7 @@
         </button>
         <div class="navbar-dc">
             <a href="accueil.html"> <input type="button" name="button" value="Déconnexion" class="btn btn-outline-secondary btn-lg"></a> </br>
+            
             
         </div>
     </nav>
@@ -196,139 +188,121 @@
     
     <div id="container">
         
-        <form action="inscriptionacheteur.php" method="POST">
+ 
         
 
-     <section>
-                <h2>Mon compte</h2><br><br>
-                
-
-                <h3><U>Information client</U></h3>
+        <section>
+            <?php
             
-             <?php
-       
-        //identifier votre BDD
-        $database = "ebayece";
-
-        //connectez-vous de la BDD
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        //si la BDD existe
-        $ID = $_SESSION['id_utilisateur'];
-            if ($db_found) {
-            //on cherche le livre
-            $sql = "SELECT * FROM acheteur where id_a like '$ID'";
-            $result = mysqli_query($db_handle, $sql);
-
-            
-            //afficher les résultats
-            while ($data = mysqli_fetch_assoc($result)) {
-            echo "<br><table align='center'>";
-           
-            echo "<tr>";
-            echo "<th> <U> Pseudo</U> :  " . $data['pseudo_a'] . "</th> ";
-            echo "<th> <U> E-mail</U> : " . $data['email_a'] . "</th>"; 
-            echo "</tr>";
-
-            echo "<tr>";
-            echo " <th> <U>Nom</U> : " . $data['nom_a'] . "</th>"; 
-            echo " <th> <U> Prenom</U> : " . $data['prenom_a'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo " <th> <U> Adresse 1</U> : " . $data['adresse_1'] . "</th>";
-            echo "</tr>";
-            echo " <th> <U> Adresse 2</U> : " . $data['adresse_2'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo "<th>  <U> Ville</U> : " . $data['ville'] . "</th>";
-            echo "<th> <U> Code Postal</U> :" . $data['code_postal'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo " <th> <U> Pays</U> : " . $data['pays'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo " <th> <U> Numéro de tel</U> : " . $data['numero_tel'] . "</th>";
-            echo "</tr>";
-
-        }
-        echo "</table>";
-        } else {
-        echo "Database not found. <br>";
-        }
+            $ID=$_SESSION['id_utilisateur'];
+            echo "<br><h2>Votre messagerie</h2><br>";
     
-        //fermer la connexion
-    mysqli_close($db_handle);
-    ?> 
-    <br><br><br>
-
-        <h3><U>Informations bancaires</U></h3>
-        <br>
-
-            
-
-    <?php
-
-    //identifier votre BDD
-    $database = "ebayece";
-
-    //connectez-vous de la BDD
-    $db_handle = mysqli_connect('localhost', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
-    //si la BDD existe
-    $ID = $_SESSION['id_utilisateur'];
-        if ($db_found) {
-        //on cherche le livre
-        $sql = "SELECT * FROM acheteur where id_a like '$ID'";
-        $result = mysqli_query($db_handle, $sql);
-
-        
-        //afficher les résultats
-        while ($data = mysqli_fetch_assoc($result)) {
-            if(!is_null($data['nom_carte']))
+            $database = "ebayece";
+    
+            //connectez-vous de la BDD
+            $db_handle = mysqli_connect('localhost', 'root', '');
+            $db_found = mysqli_select_db($db_handle, $database);
+            //si la BDD existe
+            if ($db_found) {
+                
+                echo "<br>";
+                $sql = "SELECT * FROM meilleureoffre WHERE EXISTS (SELECT * FROM affiliation WHERE id_ac = '$ID')";
+                
+                $result = mysqli_query($db_handle, $sql);
+                
+                if(mysqli_num_rows($result) === 0)
+                {
+                    echo " <h2> Vous n'avez pas encore effectué d'offres. </h2>";
+                }
+                else{
+                    $total=0;
+                    while ($data2 = mysqli_fetch_assoc($result)) 
+                    {
+                        $item=$data2['id_ite'];
+                        $sql1 = "SELECT * FROM item WHERE id_item = $item";
+                
+                        $result1 = mysqli_query($db_handle, $sql1);
+                        $data = mysqli_fetch_assoc($result1);
+                    
+                    $total= $total + $data['prix'] ;
+                    $photo=$data['photo_i'];
+                    $id=$data['id_item'];
+                    
+                    echo "<table >";
+                    echo "<tr >
+                    <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
+                    echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+                    echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
+                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] ."</td>";
+                    
+                    if($data2['proposition_v']==='0')
+                    {
+                        echo "<td align='left' width=25%> <h2> En attente d'une réponse du vendeur.  <h2>";
+                        
+                        echo "</td>";
+                    }
+                    else
+                    {
+                        echo "<td width=25%> <h2> Le vendeur vous propose " . $data2['proposition_v'] . " € </h2></td>";
+                    }
+                    
+                    echo "</tr><tr>
+                    <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
+                     <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
+                    
+                    
+                    if($data2['proposition_v']==='0')
+                    {
+                        if($data2['nb_prop'] === '6')
+                        {
+                                echo " Vous ne pouvez plus faire de proposition d'offre pour cet item, vous en avez proposez 5." ;
+                        }   
+                        if($data2['nb_prop']<6 && $data2['nb_prop']===1)
+                        {
+                         
+                            $idItem=$data['id_item'];
+                            echo "<br><form action='faireoffre.php' method='POST'>
+                            Offre numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idItem' readonly='readonly' style='width:40px;'><br>
+                            <input type='number' min='1' id='submit' name='offre' value='Accepter' placeholder='montant en euro (€)'><br> <input type='submit' id='submit' value='Proposer' > </form>";
+                        }
+                    }
+                    else 
+                    {
+                        $idItem=$data['id_item'];   
+                        if($data2['nb_prop']<6)
+                        {
+                        echo "<br><form action='faireoffre.php' method='POST'>
+                        Offre numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idItem' readonly='readonly' style='width:40px;'><br>
+                        <input type='number' min='1' id='submit' name='offre' value='Accepter' placeholder='montant en euro (€)'><br> <input type='submit' id='submit' value='Proposer' > </form>";
+                        }
+                        echo" <a href='accepteroffre.php?id=$idItem' > <input type='submit' id='submit2' value='Accepter'> </a>";
+                    }
+                    
+                    
+                    
+                    
+                    echo "</table>";
+                }
+                    
+                    
+                }
+                
+    
+    }
+            else 
             {
-            echo "<br><table align='center'>";
-
-            echo "<tr>";
-            echo " <th> <U> Type de carte</U> : " . $data['type_de_carte'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo "<th> <U> Numéro de carte</U> : " . preg_replace('/(\d)/', '*', $data['num_carte']) . "</th>";
-            echo "<th> <U> Nom sur la carte</U> : " . $data['nom_carte'] . "</th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo "<th> <U>Date d'expiration</U> : " .  $data['date_expi'] . " </th>";
-
-
-            echo "<th> <U> Code de securité </U> : " . $data['code_securite'] . "</th>";        
-            echo "</tr>";
-            echo "</table>";
-            }else 
-            {
-                echo "<br>Informations bancaires non renseignées.<br> Elles vous seront demandées lors de votre premier achat.";
+                echo "Database not found. <br>";
             }
+                
             
-        }
-            } else {
-            echo "Database not found. <br>";
-            }
-        
-            //fermer la connexion
-        mysqli_close($db_handle);
-        ?>  
-
-        
-
-        </form>
+    
+              ?>  
+                
+    
     </div>
 
-    <footer class="container-fluid text-center">
-        <h6 class="text-uppercase font-weight-bold ">Contact</h6>
+    <footer class="container-fluid">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
         <p>
         37, quai de Grenelle, 75015 Paris, France <br>
         info@webDynamique.ece.fr <br>

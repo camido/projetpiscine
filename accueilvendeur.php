@@ -83,10 +83,11 @@
     /* carre blanc */
     form {
         width:200%;
-        padding: 30px;
+        padding: 10px;
         border: 1px solid #f1f1f1;
         background: #fff;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        position: top;  
     }
     #container h1{
         width: 30%;
@@ -183,7 +184,7 @@ mysqli_close($db_handle);
     <body   style="background-image: url(<?php print $target; ?>)">
    
     <nav class="navbar t">
-        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilvendeur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -198,9 +199,17 @@ mysqli_close($db_handle);
         <div class="center navbar-center" id="main-navigation">
             
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
+                
                 <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Gérer mes ventes</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Gérer mes ventes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Retirer items en vente</a>
+                      <a class="dropdown-item" href="offrevendeur.php">Mes demandes d'offre</a>
+                    </div>
+                  </li>
 
 
                 
@@ -257,7 +266,7 @@ $db_found = mysqli_select_db($db_handle, $database);
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
             
-            echo "<h3>Bon retour parmis nous :" . $data['pseudo_v'] . "</h3>"; 
+            echo "<h3>Bon retour parmi nous :" . $data['pseudo_v'] . "</h3>"; 
    
             echo "<br><table align='center'>";
 
@@ -266,7 +275,7 @@ $db_found = mysqli_select_db($db_handle, $database);
             echo "<th> <U> E-mail</U> : " . $data['email_v'] . "</th>";
             echo "</tr>";
 
-            echo '<img src="'.$data['photo_v'].'" width="128" height="117"> </img>';
+            echo '<img src="'.$data['photo_v'].'" width=200" height="200"> </img>';
             
 
            
