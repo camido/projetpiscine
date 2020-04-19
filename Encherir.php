@@ -40,8 +40,13 @@ $db_found = mysqli_select_db($db_handle, $database);
             $sql = "SELECT * FROM enchere WHERE id_item= '$idArticle'";
             $result = mysqli_query($db_handle, $sql);
             
+            $sql3 = "SELECT prix FROM item WHERE id_item= '$idArticle'";
+            $result3 = mysqli_query($db_handle, $sql3);
+            $data3 = mysqli_fetch_assoc($result3);
+
             $prixmax=0;
-            $prixsecond=0;
+            $prixsecond=$data3['prix'];
+
             while ($data = mysqli_fetch_assoc($result)) 
             {
                 $prix=$data['offre'];

@@ -213,7 +213,7 @@ session_start();
                     $total=0;
                     while ($data = mysqli_fetch_assoc($result)) 
                     {
-                    $total= $total + $data['prix'] ;
+                    
                     $photo=$data['photo_i'];
                     $id=$data['id_item'];
                     
@@ -233,6 +233,7 @@ session_start();
                     }
                     if($data['type_vente']==='Achat Immediat')
                     {
+                        $total= $total + $data['prix'] ;
                         echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
                     }  
                     if($data['type_vente']==='Meilleure Offre et Achat Immediat')
@@ -243,6 +244,7 @@ session_start();
                         
                         if(mysqli_num_rows($result2) === 0)
                         {
+                            $total= $total + $data['prix'] ;
                             echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
                         }
                         else
@@ -258,7 +260,7 @@ session_start();
                     
                     }
                     echo "</table>";
-                    echo " <h3> SOUS-TOTAL : $total € </h3>";
+                    echo " <h3> SOUS-TOTAL : $total € </h3><br> Ce total ne prend en compte que les achats immédiats. </br> Le paiement des enchères et meilleures offre sera automatique.";
                     echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
                     
                 }

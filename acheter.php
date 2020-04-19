@@ -14,5 +14,12 @@
        if ($db_found) 
        {
 
+        $sqlInsert = "INSERT INTO affiliation (id_a, id_it) VALUES ('$idAcheteur', '$idArticle')";    
+
+                
+        $result = mysqli_query($db_handle, $sqlInsert); 
+        header('Location: panier.php');
+        exit();
+
        }
 ?>
