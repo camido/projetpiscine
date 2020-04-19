@@ -195,7 +195,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
+        <a href="accueil.html"> <button class="btn btn-outline-secondary btn-lg">Deconnexion</button> </a>
         </div>
     </nav>
     <nav class="navbar navbar-expand-md">
@@ -224,8 +224,9 @@
                       <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -262,7 +263,6 @@ $db_found = mysqli_select_db($db_handle, $database);
     
 
     while ($data = mysqli_fetch_assoc($result)) {
-    $nom=$data['nom_i'];
     $id=$data['id_item'];
     echo "<tr>";
     echo "<th bgcolor='#DCB877'> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";

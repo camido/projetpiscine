@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE -paiement</title>
+<title>Ebay ECE - Panier </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -87,13 +90,11 @@
         padding-bottom: 10px;
     }
     #container h2{
-        width: 50%;
+        width: 70%;
         margin: 0 auto;
         padding-bottom: 10px;
+        text-align: center;
     }
-    #number {
-  width: 8em;
-}
     
     
     /* Full-width inputs */
@@ -135,7 +136,7 @@
 <body>
    
     <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -155,9 +156,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
-                      <a class="dropdown-item" href="#">Bon pour les musées</a>
-                      <a class="dropdown-item" href="#">Accésoires VIP</a>
+                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -165,13 +166,14 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -181,52 +183,84 @@
     
     <div id="container">
         
-        <form action="paiement.php" method="POST">
+    <form action="paiement.html" method="POST">
         
 
-     <section>
-                <h2>Informations de paiement</h2><br>
-                <p>
-                  <label for="card">
-                    <span><b>Type de carte :</b></span>
-                  </label>
-                  <select id="card" name="usercard">
-                    <option value="visa">Visa</option>
-                    <option value="mc">Mastercard</option>
-                    <option value="amex">American Express</option>
-                    <option value="amex">Paypal</option>
-                  </select>
-                </p>
-            <table>
-                <tr> 
-                    <td><label><b>Numero de carte</b></label>
-                        <input type="number" placeholder="Numéro de carte" name="numcarte" minlength="15" maxlength="16" required></td>
-                    <td><label><b>Nom affiché sur la carte</b></label>
-                        <input type="text" placeholder="Nom affiché sur la carte" name="nomcarte" required>
-                    </td>
-                </tr>
-                <tr> 
-                    <td><label><b>Code de sécurité (3 ou 4 chiffres, selon la carte)</b></label>
-                        <input type="number" placeholder="Code de sécurité" id = "number" name="codecarte" minlength="3" maxlength="4" required></td>
-                        
-                    <td ><label><b>Date d'expiration</b></label>
-                        <input type="month"  name="datecarte" required></td>
-                </tr>
-            </table>
+        <section>
+            <?php
             
+            $ID=$_SESSION['id_utilisateur'];
+            echo "<h2>Panier</h2><br>";
+    
+            $database = "ebayece";
+    
+            //connectez-vous de la BDD
+            $db_handle = mysqli_connect('localhost', 'root', '');
+            $db_found = mysqli_select_db($db_handle, $database);
+            //si la BDD existe
+            if ($db_found) {
                 
-            </section> 
-            <table>
-                <tr><label for="conditions">Se souvenir de moi?  </label>
-                    <input type="checkbox" class:"form-check-input" id="conditions" name="conditions" value="accepter" >
+    
+                $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
+                
+                $result = mysqli_query($db_handle, $sql);
+    
+                if(mysqli_num_rows($result) === 0)
+                {
+                    echo " <h2> Ce panier est vide </h2>";
+                }
+                else{
+                    $total=0;
+                    while ($data = mysqli_fetch_assoc($result)) 
+                    {
+                    $total= $total + $data['prix'] ;
+                    $photo=$data['photo_i'];
+                    $id=$data['id_item'];
                     
-                </tr>
-            </table>
+                    echo "<table >";
+                    echo "<tr>
+                    <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
+                    echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
+                    echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
+                    echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+                    if($data['type_vente']==='Enchere')
+                    {
+                        echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
+                    }
+                    if($data['type_vente']==='Meilleure Offre')
+                    {
+                        echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
+                    }
+                    if($data['type_vente']==='Achat Immediat')
+                    {
+                        echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                    }  
+                    
+                    echo "</tr><tr>
+                    <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
+                     <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
+                    
+                    
+                    }
+                    echo "</table>";
+                    echo " <h3> SOUS-TOTAL : $total € </h3>";
+                    echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
+                    
+                }
+                
+    
+    } 
+            else 
+            {
+                echo "Database not found. <br>";
+            }
+                
             
-            <input type="submit" id='submit' value='Valider' >
-
-
-        </form>
+    
+              ?>  
+                
+    
+            </form>
     </div>
 
     <footer class="container-fluid">

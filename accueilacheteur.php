@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>EbayECE - Acceuilacheteur</title>
+<title>EbayECE - Accueilacheteur</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -176,7 +176,7 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
                       <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
                       <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
@@ -186,13 +186,14 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
                       <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
                       <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
@@ -223,10 +224,11 @@
             
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
+            $id=$data['id_item'];
             echo "<br><table align='center'>";
             echo "<caption> </caption>";
             echo "<tr>";
-            echo "<th> <h3>" . $data['nom_i'] . "</h3> ";
+            echo "<th> <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3></a> ";
             echo " #" . $data['id_item'] . "</th>"; 
             echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
             echo "<td> </td>";
