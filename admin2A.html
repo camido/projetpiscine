@@ -170,9 +170,9 @@
             </h1>
             
             <p><label><b> Catégorie de l'item : </b></label><br>
-                <input type="radio" name="categorie"> Feraille ou Tresor <br>
-                <input type="radio" name="categorie"> Bon pour le Musee <br>
-                <input type="radio" name="categorie"> Accessoire VIP <br></p>
+                <input type="radio" name="categorie" value="Ferraille ou Tresor"> Ferraille ou Tresor <br>
+                <input type="radio" name="categorie" value="Bon pour le Musee"> Bon pour le Musee <br>
+                <input type="radio" name="categorie" value="Accessoire VIP"> Accessoire VIP <br></p>
 
             <label><b>Nom* :</b></label>
             <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>
@@ -187,22 +187,30 @@
             <input type="file" name="item_photo3" id="item_photo3"><br>
 
             <label><b>Description* :</b></label>
+            <!-- A la place de id j'ai mis name-->
             <input type="text" placeholder="Ecrire une description" name="item_description" required size=2>
-
-            <label><b>Video :</b></label>
-            <input type="file" name="item_video" id="item_video">
-
+                
+            <!-- J'ai enlevé la vidéo-->
             <table>
                 <tr>
                     <th>
                         <label><b> Prix de depart* : </b></label>
+<<<<<<< HEAD
                         <input type="text" placeholder="Prix(€)" name="item_prix" required>
+=======
+                        <input type="int" placeholder="Prix(€)" name="item_prix" required>
+>>>>>>> 2fb5837ac273371754c0c25cc7c844af2ed418ad
                     </th>
                 </tr>
             </table>
 
             <label><b>Date de fin* :</b></label>
+<<<<<<< HEAD
             <input type="datetime-local" name="item_date" name="item_date" required><br>
+=======
+            <!-- J'ai ajouté min et max pour la date-->
+            <input type="datetime-local" name="item_date" min="2020-04-27T00:00:00" max="2021-01-01T00:00:00" required><br>
+>>>>>>> 2fb5837ac273371754c0c25cc7c844af2ed418ad
 
             <a>*: champs obligatoires</a><br>
 

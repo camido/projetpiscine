@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,81 +144,19 @@ session_start();
 
 <body>
    
-<<<<<<< HEAD:panier.php
-    <nav class="navbar t">
-        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
-=======
     <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="#">Ebay ECE: ADMIN</a>
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-dc">
-            <button class="btn btn-outline-secondary btn-lg">Deconnexion</button>
+            <a href="accueil.html"><button class="btn btn-outline-secondary btn-lg">Deconnexion</button></a>
         </div>
 
-<<<<<<< HEAD:panier.php
-        
-        <div class="center navbar-center" id="main-navigation">
-            
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
-                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Achat
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
-                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
-                    </div>
-                  </li>
-                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
-
-
-                
-            </ul>
-        </div>
-=======
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
     </nav>
     
     <div id="container">
-        <!-- zone de connexion -->
-        
-<<<<<<< HEAD:panier.php
-        <form action="paiement.html" method="POST">
-        
 
-    <section>
-        <?php
-        $ID=$_SESSION['id_utilisateur'];
-        echo "<h2>Panier</h2><br>";
-
-        $database = "ebayece";
-
-        //connectez-vous de la BDD
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        //si la BDD existe
-        if ($db_found) {
-            
-
-            $sql = "SELECT * FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '$ID')";
-            
-            $result = mysqli_query($db_handle, $sql);
-=======
         <form action="admin3.php" method="post" enctype="multipart/form-data"> 
             
             <h1>
@@ -242,70 +178,12 @@ session_start();
 
              <label><b>Catégorie de l'item : </b></label> <br>
              <p>
-                <input type="radio" name="item_categorie"> Feraille ou tresor <br>
-                <input type="radio" name="item_categorie"> Bon pour le musee <br>
-                <input type="radio" name="item_categorie"> Accessoire VIP <br>
+                <input type="radio" name="item_categorie" value="Ferraille ou Tresor">Ferraille ou Tresor <br>
+                <input type="radio" name="item_categorie" value="Bon pour le Musee">Bon pour le Musee <br>
+                <input type="radio" name="item_categorie" value="Accessoire VIP">Accessoire VIP <br>
             </p>
 
             <input type="submit" value="Supprimer">
->>>>>>> 7342fc09bb9d30f6b25a7e10e69415269b3b4d30:admin3.html
-
-            if(mysqli_num_rows($result) === 0)
-            {
-                echo " <h2> Ce panier est vide </h2>";
-            }
-            else{
-                $total=0;
-                while ($data = mysqli_fetch_assoc($result)) 
-                {
-                $total= $total + $data['prix'] ;
-                $photo=$data['photo_i'];
-                $id=$data['id_item'];
-                
-                echo "<table >";
-                echo "<tr>
-                <td >" . $data['type_vente'] . " </td> <td > </td><td> </td><td> </td></tr>";
-                echo "<tr><td > <a href='afficherArticle.php?id=$id'> <h3>" . $data['nom_i'] . "</h3> </a>";
-                echo " #" . $data['id_item'] . "</td> <td> <img src='$photo' width='100' height='150' /></td>"; 
-                echo "<td width=40%><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
-                if($data['type_vente']==='Enchere')
-                {
-                    echo "<td align='left' width=25%> En attente de la fin de l'enchère. </br> Le prix actuel : </br> <h3>" . $data['prix'] . " € </h3> <br> Date de fin de l'enchère : " . $data['date_fin'] . "</td>";
-                }
-                if($data['type_vente']==='Meilleure Offre')
-                {
-                    echo "<td align='left' width=25%> En attente d'une réponse du vendeur.  </td>";
-            
-                }
-                if($data['type_vente']==='Achat Immediat')
-                {
-                    echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
-                }  
-                
-                echo "</tr><tr>
-                <td height='20'> </td> <td > </td><td> </td><td> </td></tr>
-                 <tr><td style='background-color:#000000' height='5'> </td> <td style='background-color:#000000' height='5'> </td><td style='background-color:#000000'> </td><td style='background-color:#000000'> </td></tr>";
-                
-                
-                }
-                echo "</table>";
-                echo " <h3> SOUS-TOTAL : $total € </h3>";
-                echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
-                
-            }
-            
-
-} 
-        else 
-        {
-            echo "Database not found. <br>";
-        }
-            
-        
-
-          ?>  
-            
-
         </form>
     </div>
 

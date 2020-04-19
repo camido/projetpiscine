@@ -1,9 +1,6 @@
 <?php
 
-
-$item_name = isset($_POST["item_name"])? $_POST["item_name"] : "";
-$item_num = isset($_POST["item_num"])? $_POST["item_num"] : "";
-$item_categorie = isset($_POST["item_categorie"])? $_POST["item_categorie"] : "";
+$id=$_GET['id'];
 
 
 $database = "ebayece";
@@ -15,10 +12,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     if ($db_found) 
     {    
         $sql = "SELECT * FROM item";   
-        if ($item_num != "") 
+        if ($id != "") 
         {     
             
-            $sql .= " WHERE id_item LIKE '$item_num' AND categorie LIKE '$item_categorie' AND nom_i LIKE '$item_name'";     
+            $sql .= " WHERE id_item LIKE '$id'";     
            // if ($item_num != "") 
            // {      
            //     $sql .= " AND  LIKE '%$item_num%'";     
@@ -35,10 +32,10 @@ $db_found = mysqli_select_db($db_handle, $database);
             {     
                    
                 $sql = "DELETE FROM item";     
-                $sql .= " WHERE id_item = '$item_num' AND categorie = '$item_categorie' AND nom_i = '$item_name'";     
+                $sql .= " WHERE id_item = '$id'";     
                 $result = mysqli_query($db_handle, $sql);     
                 //echo "Delete successful. <br>"; 
-                header('Location: admin_suppr.html'); 
+                header('Location: item_vendeur.php'); 
  
             } 
         }

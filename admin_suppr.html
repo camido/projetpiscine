@@ -1,87 +1,45 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<title>Ebay ECE :ADMIN -> ajouter un item</title>
-
+<title>Ebay ECE: ADMIN - ajouter un item</title>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
  <link rel="stylesheet"
-
  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-
-
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="styles.css">
-
 <style type="text/css">
-
     body {
-
     background-image: url('images_projet/pdg.jpg');
-
     background-size: cover;
-
     background-position: center;
-
     position: relative;
-
     }
-
-
 
    
-
     /*--- navigation bar ---*/
-
     .navbar {
-
     background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-
     }
-
     .nav-link, .navbar-brand {
-
     color: rgb(7, 7, 7);
-
     cursor: pointer;
-
     font-style: oblique;
-
     font-weight: 700;
-
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
     font-size: 40px;
-
     }
-
     .nav-link {
-
     margin-right: 1em !important;
-
     }
-
     .nav-link:hover {
-
     color: #000;
-
     }
-
     .navbar-collapse {
-
     justify-content: flex-end;
-
     }
-
     .navbar-dc {
 
     left : 90%;
@@ -113,210 +71,122 @@
     color: rgb(78, 78, 78)
     }
 
-
-
-
     .header {
-
     background-image: url('pdg.jpg');
-
     background-size: cover;
-
     background-position: center;
-
     position: relative;
-
     }
-
     #container{
-
         width:400px;
-
-        margin:0 auto;
-
+        margin-left: 20%;
         margin-top:10%;
-
         margin-bottom:10%;
-
     }
-
-
-
 
 
     /* carre blanc */
-
     form {
-
-        width:100%;
-
+        width:200%;
         padding: 30px;
-
         border: 1px solid #f1f1f1;
-
         background: #fff;
-
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
     }
-
     #container h1{
-
-        width: 50%;
-
+        width: 60%;
         margin: 0 auto;
-
         padding-bottom: 10px;
-
     }
-
+    #container h2{
+        width: 50%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
     
-
+    
     /* Full-width inputs */
-
     input[type=text], input[type=password] {
-
         width: 100%;
-
         padding: 12px 20px;
-
         margin: 8px 0;
-
         display: inline-block;
-
         border: 1px solid #ccc;
-
         box-sizing: border-box;
-
     }
-
     
-
     /* Set a style for all buttons */
-
     input[type=submit] {
-
         background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-
         color: white;
-
         padding: 14px 20px;
-
         margin: 8px 0;
-
         border: none;
-
         cursor: pointer;
-
         width: 100%;
-
     }
-
     footer {
-
       background-image:linear-gradient(60deg, #dbb775, rgb(255, 238, 217));
-
       color: white;
-
       padding: 15px;
-
     }
-
     
-
     
-
     
-
 </style>
-
 <script type="text/javascript">
-
     $(document).ready(function(){
-
     $('.header').height($(window).height());
-
     });
-
 </script>   
-
 </head>
 
-
-
 <body>
-
    
-
     <nav class="navbar navbar-expand-md">
-
-        <a class="navbar-brand" href="#">Ebay ECE : ADMIN </a>
-
+        <a class="navbar-brand" href="#">Ebay ECE: ADMIN</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-
         <span class="navbar-toggler-icon"></span>
-
         </button>
-
         <div class="navbar-dc">
             <a href="accueil.html"><button class="btn btn-outline-secondary btn-lg">Deconnexion</button></a>
         </div>
 
-
     </nav>
-
     
-
     <div id="container">
-
         <!-- zone de connexion -->
-
         
+        <form action="admin1.html" method="post" enctype="multipart/form-data">
+            
+            <h1>
+                <table>
+                    <tr>
+                        <th>
+                            Suppression effectuee avec succes !
+                        </th>
+                    </tr>
+                </table>
+            </h1>
+ 
 
-        <form action="admin2.php" method="post" enctype="multipart/form-data">
+            <input type="submit" value="Retourner au menu admin">
 
-            <h1>Ajouter un item :</h1>
-
-
-                
-            <p> Mode d'achat : <br>
-                <input type="radio" name="categorie" value="Enchere" checked> Enchere <br>
-                <input type="radio" name="categorie" value="Achat immediat"> Achat Immediat <br>
-                <input type="radio" name="categorie" value="Meilleure offre"> Meilleure Offre <br>
-                <input type="radio" name="categorie" value="Meilleure offre et achat immediat"> Meilleure offre et Achat Immediat</p>   
-
-                <input type="submit" value="Ajouter">  <br>
 
         </form>
-
     </div>
 
-
-
     <footer class="container-fluid">
-
         <h6 class="text-uppercase font-weight-bold">Contact</h6>
-
         <p>
-
         37, quai de Grenelle, 75015 Paris, France <br>
-
         info@webDynamique.ece.fr <br>
-
         +33 01 02 03 04 05 <br>
-
         +33 01 03 02 05 04
-
         </p>
-
         <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
-
       </footer>
 
-
-
    
-
 </body>
-
 </html>
