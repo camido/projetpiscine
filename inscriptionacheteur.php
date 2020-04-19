@@ -9,12 +9,16 @@ $ville= isset($_POST["ville"])? $_POST["ville"] : "";
 $codepostal = isset($_POST["Codepostal"])? $_POST["Codepostal"] : "";
 $pays = isset($_POST["pays"])? $_POST["pays"] : "";
 $numtel = isset($_POST["numtel"])? $_POST["numtel"] : "";
-/*$typecard = isset($_POST["usercard"])? $_POST["usercard"] : "";
+$checkbox = isset($_POST["informations"])? $_POST["informations"] : "";
+if($checkbox==="oui")
+{ 
+$typecard = isset($_POST["usercard"])? $_POST["usercard"] : "";
 $numcarte = isset($_POST["numcarte"])? $_POST["numcarte"] : "";
 $nomcarte = isset($_POST["nomcarte"])? $_POST["nomcarte"] : "";
 $codecarte = isset($_POST["codecarte"])? $_POST["codecarte"] : "";
 $datecarte = isset($_POST["datecarte"])? $_POST["datecarte"] : "";
-*/
+}
+
         $database = "ebayece";
 
         $db_handle = mysqli_connect('localhost', 'root', '');
@@ -44,13 +48,22 @@ $datecarte = isset($_POST["datecarte"])? $_POST["datecarte"] : "";
 
             //regarder s'il y a de résultat
             if (mysqli_num_rows($result) === 0 && mysqli_num_rows($result1) === 0 && mysqli_num_rows($result2) === 0 )
-            {            
+            {    
+                if($checkbox==="oui")
+                { 
+                    $sqlInsert = "INSERT INTO acheteur (pseudo_a, email_a, nom_a, prenom_a, adresse_1, ville, code_postal, pays, numero_tel, num_carte,type_de_carte, nom_carte,date_expi,code_securite, accepter_conditions) VALUES ('$pseudo', '$mdp', '$nom', '$prenom', '$adresse1', '$ville','$codepostal','$pays','$numtel','$numcarte','$typecard','$nomcarte','$datecarte','$codecarte' ,'1')";    
+
+                $result = mysqli_query($db_handle, $sqlInsert);
                 
+                header('Location: inscription_reussie.html');
+                }
+                else{
                 $sqlInsert = "INSERT INTO acheteur (pseudo_a, email_a, nom_a, prenom_a, adresse_1, ville, code_postal, pays, numero_tel, accepter_conditions) VALUES ('$pseudo', '$mdp', '$nom', '$prenom', '$adresse1', '$ville','$codepostal','$pays','$numtel','1')";    
 
                 $result = mysqli_query($db_handle, $sqlInsert);
                 
                 header('Location: inscription_reussie.html'); 
+            }
             }
             else
             {
