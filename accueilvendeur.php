@@ -198,9 +198,17 @@ mysqli_close($db_handle);
         <div class="center navbar-center" id="main-navigation">
             
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
+
                 <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Gérer mes ventes</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Gérer mes ventes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="item_vendeur.php">Retirer items en vente</a>
+                      <a class="dropdown-item" href="offrevendeur.php">Mes demandes d'offre</a>
+                    </div>
+                  </li>
 
 
                 
