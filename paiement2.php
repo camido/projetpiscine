@@ -13,19 +13,30 @@ $datecarte = isset($_POST["datecarte"])? $_POST["datecarte"] : "";
 
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, $database);
-        echo $id;
+        
         if ($db_found) 
         { 
                 
-              //$sql = "SELECT * FROM acheteur";
-
+     
 
     
                 $sql ="UPDATE acheteur SET num_carte = '$numcarte', type_de_carte = '$typecard', nom_carte = '$nomcarte',date_expi = '$datecarte',code_securite= '$codecarte' WHERE id_a = $id";
                 $result = mysqli_query($db_handle, $sql);
                 
-                
+                if($_SESSION['action']==='panier')
+                {
                 header('Location: verificationpaiement.php');
+                }
+                if($_SESSION['action']==='enchere')
+                {
+                        $_SESSION['action']='autoriser';
+                        header('Location: Encherir.php');
+                }
+                if($_SESSION['action']==='offre')
+                {
+                        $_SESSION['action']='autoriser';
+                        header('Location: faireoffre.php');
+                }
                
 
             

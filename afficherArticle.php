@@ -340,6 +340,7 @@ mysqli_close($db_handle);
  <div id="section">
  <?php
   $idArticle = $_GET['id'];
+  $_SESSION['action']='rien';
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD

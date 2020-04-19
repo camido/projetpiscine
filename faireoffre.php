@@ -1,30 +1,69 @@
 <?php
 session_start();
 
-$idArticle =  isset($_POST["idArticle"])? $_POST["idArticle"] : "";
+
 $idAcheteur =$_SESSION['id_utilisateur'];
 $typeutilisateur= $_SESSION['type_utilisateur'];
-$offre =  isset($_POST["offre"])? $_POST["offre"] : "";
+
 //identifier votre BDD
 //connectez-vous de la BDD
 $database = 'ebayece';
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
+
 //si la BDD existe
     if ($db_found) 
     {
 
-        if($idArticle && $idAcheteur && $offre)
+        if($idAcheteur)
         {
             if($typeutilisateur==='acheteur')
             {
+                if($_SESSION['action']!=='autoriser')
+                {
+                $offre =  isset($_POST["offre"])? $_POST["offre"] : "";
+                $idArticle =  isset($_POST["idArticle"])? $_POST["idArticle"] : "";
+                $_SESSION['article']= $idArticle;
+                $_SESSION['prixoffre']=$offre;
+                }
+                else {
+                    $idArticle=$_SESSION['article'];
+                    $offre = $_SESSION['prixoffre'];
+                }
                 $sql = "SELECT * FROM acheteur WHERE id_a = '$idAcheteur'";
                 $result = mysqli_query($db_handle, $sql);
                 $data = mysqli_fetch_assoc($result);
                 if(is_null($data['num_carte']))
                 {
-                    header('Location: paiement.html');
+                    $_SESSION['total']=$offre;
+                    $_SESSION['action']='offre';
+                    header('Location: paiement.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='visa' && $offre > 1500)
+                {
+                    
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='mc' && $offre > 2500)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='amex' && $offre > 6500)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='paypal' && $offre > 750)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
                     exit();
                 }
             $sql = "SELECT * FROM meilleureoffre WHERE id_ac = '$idAcheteur' AND id_ite = '$idArticle'";
@@ -41,11 +80,11 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                 
             $result = mysqli_query($db_handle, $sqlInsert);
-
             echo '<meta http-equiv="refresh" content="0;URL=offres.php">';  
             }
             else
             {
+                $offre =  isset($_POST["offre"])? $_POST["offre"] : "";
                 $data = mysqli_fetch_assoc($result);
                 
                 if($data['nb_prop'] < 6 && $data['accepter'] === '0' )
@@ -104,6 +143,7 @@ $db_found = mysqli_select_db($db_handle, $database);
         }
             
         }
+        $_SESSION['action']='rien';
 
     }
     else

@@ -1,10 +1,10 @@
 <?php
-  session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE - paiement</title>
+<title>Ebay ECE - Panier </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -19,6 +19,7 @@
     background-size: cover;
     background-position: center;
     position: relative;
+    text-align:center;
     }
 
    
@@ -90,13 +91,11 @@
         padding-bottom: 10px;
     }
     #container h2{
-        width: 50%;
+        width: 70%;
         margin: 0 auto;
         padding-bottom: 10px;
+        text-align: center;
     }
-    #number {
-  width: 8em;
-}
     
     
     /* Full-width inputs */
@@ -138,7 +137,7 @@
 <body>
    
     <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -158,9 +157,9 @@
                       Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Trésor et Féraille</a>
-                      <a class="dropdown-item" href="#">Bon pour les musées</a>
-                      <a class="dropdown-item" href="#">Accésoires VIP</a>
+                    <a class="dropdown-item" href="categorie.php?categorie=Ferraille ou Tresor">Férraille ou Trésor</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Bon pour le Musee">Bon pour le Musée</a>
+                      <a class="dropdown-item" href="categorie.php?categorie=Accessoire VIP">Accessoire VIP</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -168,101 +167,75 @@
                       Achat
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Enchère</a>
-                      <a class="dropdown-item" href="#">Meilleure Offre</a>
-                      <a class="dropdown-item" href="#">Achat immédiat</a>
+                    <a class="dropdown-item" href="typevente.php?vente=Enchere">Enchère</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Meilleure Offre">Meilleure Offre</a>
+                      <a class="dropdown-item" href="typevente.php?vente=Achat Immediat">Achat immédiat</a>
                     </div>
                   </li>
-                <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> <img style=width:20px; src="images_projet/panier.png"></a></li>
+                <li class="nav-item"><a class="nav-link" href="moncompte.php">Mon compte</a></li>
+                <li class="nav-item"><a class="nav-link" href="offres.php">Réponses Offres</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier.php"> <img style=width:20px; src="images_projet/panier.png"></a></li>
 
 
                 
             </ul>
         </div>
     </nav>
-    <?php
-    $idAcheteur =$_SESSION['id_utilisateur'];
-      $total =$_SESSION['total'];
-  
-
-    //identifier votre BDD
-    $database = "ebayece";
-    //connectez-vous de la BDD
-    $db_handle = mysqli_connect('localhost', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
-    //si la BDD existe
-        if ($db_found) 
-        {
-          if($total>0)
-          {
-            $sql = "SELECT * FROM acheteur WHERE id_a = '$idAcheteur'";
-            $result = mysqli_query($db_handle, $sql);
-            $data = mysqli_fetch_assoc($result);
-            if(is_null($data['num_carte']))
-            {
-                
-            
-                   
     
-    echo "
-    <div id=\"container\">
+    <div id="container">
         
-        <form action=\"paiement2.php\" method=\"POST\">
+    <form action="paiement.php" method="POST">
         
 
-     <section>
-                <h2>Informations de paiement</h2><br>
-                <p>
-                  <label for=\"card\">
-                    <span><b>Type de carte :</b></span>
-                  </label>
-                  <select id=\"card\" name=\"usercard\">
-                    <option value=\"visa\">Visa</option>
-                    <option value=\"mc\">Mastercard</option>
-                    <option value=\"amex\">American Express</option>
-                    <option value=\"amex\">Paypal</option>
-                  </select>
-                </p>
-            <table>
-                <tr> 
-                    <td><label><b>Numero de carte</b></label>
-                        <input type=\"number\" name=\"numcarte\" min=\"100000000000000\" maxlength=\"9999999999999999\" required></td>
-                    <td><label><b>Nom affiché sur la carte</b></label>
-                        <input type=\"text\" placeholder=\"Nom affiché sur la carte\" name=\"nomcarte\" required>
-                    </td>
-                </tr>
-                <tr> 
-                    <td><label><b>Code de sécurité (3 ou 4 chiffres, selon la carte)</b></label>
-                        <input type=\"number\" placeholder=\"Code de sécurité\" id = \"number\" name=\"codecarte\" min=\"100\" maxlength=\"9999\" required></td>
-                        
-                    <td ><label><b>Date d'expiration</b></label>
-                        <input type=\"month\"  name=\"datecarte\" min=\"2020-05\" max=\"2025-05\" required></td>
-                </tr>
-            </table>
+        <section>
+            <?php
             
+            $ID=$_SESSION['id_utilisateur'];
+            $paiement=$_SESSION['paiement'];
+    
+            $database = "ebayece";
+    
+            //connectez-vous de la BDD
+            $db_handle = mysqli_connect('localhost', 'root', '');
+            $db_found = mysqli_select_db($db_handle, $database);
+            //si la BDD existe
+            if ($db_found) {
+                if($paiement==='refuse')
+                {
+                    echo "<br>Le paiement a été refusé.<br>";
+                    $_SESSION['action']==='rien';
+                }
+                if($paiement==='autorise')
+                {
+                    echo "<br>Le paiement a été accepté. Merci d'avoir acheté sur EbayEce !<br>" ;
+                    
+                    $sql="DELETE FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '1') AND type_vente = 'Achat Immediat'";
+                    $result = mysqli_query($db_handle, $sql);
+                    $_SESSION['action']==='rien';
+                }
+                if($paiement==='non')
+                {
+                    echo "<br>Votre demande n'a pas pu aboutir. Vous n'avez pas assez de fond sur votre carte bancaire. <br>" ;
+                    $_SESSION['action']==='rien';
+                }
                 
-            </section> 
-
+    
+                
+                
+    
+    } 
+            else 
+            {
+                echo "Database not found. <br>";
+            }
+                
             
-            <input type=\"submit\" id='submit' value='Valider' >
-
-
-        </form>
-    </div>";
-            }
-            else{
-              echo '<meta http-equiv="refresh" content="0;URL=verificationpaiement.php">';
-            }
-          }
-          else{
-            echo '<meta http-equiv="refresh" content="0;URL=panier.php">';
-          }
-        }
-        else {
-          echo "Database not found";
-        }
-    ?>
+    
+              ?>  
+                
+    
+            </form>
+    </div>
 
     <footer class="container-fluid">
         <h6 class="text-uppercase font-weight-bold">Contact</h6>

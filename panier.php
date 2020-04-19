@@ -260,6 +260,7 @@ session_start();
                     
                     }
                     $_SESSION['total']=$total;
+                    $_SESSION['action']='panier';
                     echo "</table>";
                     echo " <h3> SOUS-TOTAL : $total € </h3><br> Ce total ne prend en compte que les achats immédiats. </br> Le paiement des enchères et meilleures offre sera automatique.";
                     echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 

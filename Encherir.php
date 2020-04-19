@@ -2,7 +2,16 @@
 session_start();
 $idArticle = $_SESSION['id_item'];
 $idAcheteur =$_SESSION['id_utilisateur'];
+if($_SESSION['action']!=='autoriser')
+{
 $enchere =  isset($_POST["enchere"])? $_POST["enchere"] : "";
+$_SESSION['prixenchere']=$enchere;
+}
+else {
+   
+    $enchere = $_SESSION['prixenchere'];
+}
+
 
 //identifier votre BDD
 $database = "ebayece";
@@ -19,9 +28,36 @@ $db_found = mysqli_select_db($db_handle, $database);
                 $data = mysqli_fetch_assoc($result);
                 if(is_null($data['num_carte']))
                 {
-                    header('Location: paiement.html');
+                    $_SESSION['total']=$enchere;
+                    $_SESSION['action']='enchere';
+                    header('Location: paiement.php');
                     exit();
                 }
+                if($data['type_de_carte']==='visa' && $enchere > 1500)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='mc' && $enchere > 2500)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='amex' && $enchere > 6500)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+                if($data['type_de_carte']==='paypal' && $enchere > 750)
+                {
+                    $_SESSION['paiement']='non';
+                    header('Location: paiementautorisation.php');
+                    exit();
+                }
+
                 
             $sql = "SELECT * FROM enchere WHERE id_a = '$idAcheteur' AND id_item= '$idArticle'";
             $result = mysqli_query($db_handle, $sql);
@@ -50,12 +86,12 @@ $db_found = mysqli_select_db($db_handle, $database);
             while ($data = mysqli_fetch_assoc($result)) 
             {
                 $prix=$data['offre'];
-                echo "prix analyser $prix <br>";
+                //echo "prix analyser $prix <br>";
                 if($prix > $prixmax)
                 {
                     $prixmax =$prix;
                 }
-                echo " prix max $prixmax <br>";
+                //echo " prix max $prixmax <br>";
 
             }
             $sql = "SELECT * FROM enchere WHERE id_item= '$idArticle'";
@@ -63,17 +99,17 @@ $db_found = mysqli_select_db($db_handle, $database);
             while ($data = mysqli_fetch_assoc($result)) 
             {
                 $prix=$data['offre'];
-                echo "prix analyser $prix";
+                //echo "prix analyser $prix";
                 if($prix > $prixsecond && $prix !== $prixmax)
                 {
                     $prixsecond =$prix; 
                 }
 
-                echo "prix second $prixsecond <br>";
+                //echo "prix second $prixsecond <br>";
 
             }
             $prixfinal = $prixsecond + 1;
-            echo "PRIX DE L'ENCHERE $prixfinal";
+            //echo "PRIX DE L'ENCHERE $prixfinal";
             $sql = "UPDATE item SET prix = '$prixfinal' WHERE id_item= '$idArticle'";
             $result = mysqli_query($db_handle, $sql);
 
@@ -86,6 +122,45 @@ $db_found = mysqli_select_db($db_handle, $database);
                 {
                     $sql ="UPDATE enchere SET offre = $enchere WHERE id_a = $idAcheteur AND id_item = $idArticle ";
                     $result = mysqli_query($db_handle, $sql);
+                    $sql = "SELECT * FROM enchere WHERE id_item= '$idArticle'";
+            $result = mysqli_query($db_handle, $sql);
+            
+            $sql3 = "SELECT prix FROM item WHERE id_item= '$idArticle'";
+            $result3 = mysqli_query($db_handle, $sql3);
+            $data3 = mysqli_fetch_assoc($result3);
+
+            $prixmax=0;
+            $prixsecond=$data3['prix'];
+
+            while ($data = mysqli_fetch_assoc($result)) 
+            {
+                $prix=$data['offre'];
+                //echo "prix analyser $prix <br>";
+                if($prix > $prixmax)
+                {
+                    $prixmax =$prix;
+                }
+               // echo " prix max $prixmax <br>";
+
+            }
+            $sql = "SELECT * FROM enchere WHERE id_item= '$idArticle'";
+            $result = mysqli_query($db_handle, $sql);
+            while ($data = mysqli_fetch_assoc($result)) 
+            {
+                $prix=$data['offre'];
+                //echo "prix analyser $prix";
+                if($prix > $prixsecond && $prix !== $prixmax)
+                {
+                    $prixsecond =$prix; 
+                }
+
+                //echo "prix second $prixsecond <br>";
+
+            }
+            $prixfinal = $prixsecond + 1;
+            //echo "PRIX DE L'ENCHERE $prixfinal";
+            $sql = "UPDATE item SET prix = '$prixfinal' WHERE id_item= '$idArticle'";
+            $result = mysqli_query($db_handle, $sql);
                     echo '<body onLoad="alert(\'Votre enchère a été mise à jour.\')">';
                     echo '<meta http-equiv="refresh" content="0;URL=panier.php">';  
                 }
