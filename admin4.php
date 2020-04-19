@@ -42,10 +42,8 @@ $nom = isset($_POST["nom_v"])? $_POST["nom_v"] : "";
                 $sqlInsert = "INSERT INTO vendeur (pseudo_v, email_v, nom_v) VALUES ('$pseudo', '$mdp', '$nom')";
 
                 $result = mysqli_query($db_handle, $sqlInsert);
-                echo $pseudo;
-                echo $mdp;
-                echo $nom;
-                //header('Location: admin_suppr.html'); 
+
+                header('Location: admin_ajout.html'); 
             }
             else
             {
@@ -54,12 +52,13 @@ $nom = isset($_POST["nom_v"])? $_POST["nom_v"] : "";
                  echo '<body onLoad="alert(\'Ce pseudo est déjà pris.\')">';
 		        // puis on le redirige vers la page d'accueil
 		       echo '<meta http-equiv="refresh" content="0;URL=inscriptionvendeur.html">';
-                //header('Location: inscriptionVendeur.html'); 
+                header('Location: admin_ajout2.html'); 
             }
      
         } 
         else{
             echo "Database not found";
+            header('Location: admin_suppr3.html');
         }
         //fermer la connexion
         mysqli_close($db_handle);
