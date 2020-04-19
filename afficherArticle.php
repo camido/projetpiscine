@@ -223,7 +223,7 @@ body, html{height:100%;}
  <body>
 
 <nav class="navbar t">
-        <a class="navbar-brand" href="#">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -270,6 +270,7 @@ body, html{height:100%;}
  <div id="nava">
  <?php
   $idArticle = $_GET['id'];
+  $_SESSION['id_item']=$idArticle;
 //identifier votre BDD
 $database = "ebayece";
 //connectez-vous de la BDD
@@ -368,27 +369,34 @@ $db_found = mysqli_select_db($db_handle, $database);
     {
         echo "<td> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
     }  
+    if($data['type_vente']==='Meilleure Offre et Achat Immediat')
+    {
+        echo "<td> Vous proposez votre prix.";
+        echo " Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+    } 
     
     echo "</tr>";
     $image = $data['photo_i'];
     echo "<tr>";
     $prix=$data['prix'];
-    echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td>";
+    echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td><td> ";
     if($data['type_vente']==='Enchere')
     {
-    echo "<td> <form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='number' name='enchere' placeholder='montant en euro (€)' min='$prix' required > </br> <input type='submit' value='Enchérir'> </form></td>";
+    echo "<form action='encherir.php' method='POST'> Entrez ici le montant maximum que vous proposez : </br> <input type='number' name='enchere' placeholder='montant en euro (€)' min='$prix' required > </br> <input type='submit' value='Enchérir'> </form>";
     }
-    if($data['type_vente']==='Meilleure Offre')
-    {                                          
-    echo "<td> <form action='faireoffre.php' method='POST'> 
-    Item numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idArticle' readonly='readonly' style='width:40px;'><br>
-    <input type='number' name='offre' placeholder='montant en euro (€)' required> </br> <input type='submit' value='Proposer une offre'></a></td>";
-    }
-    if($data['type_vente']==='Achat Immediat')
+    if($data['type_vente']==='Achat Immediat' || $data['type_vente']==='Meilleure Offre et Achat Immediat')
     {
-        echo "<td> <form action='acheter.php' method='POST'>  <input type='submit' value='Achetez-le maintenant'></a></td>";
+        echo " <a href='acheter.php'>  <input type='submit' value='Achetez-le maintenant'></a>";
     }  
-    echo "</tr><tr><td></td><td></td></tr>";
+    if($data['type_vente']==='Meilleure Offre' || $data['type_vente']==='Meilleure Offre et Achat Immediat')
+    {                                
+    echo "<form action='faireoffre.php' method='POST'> 
+    Item numéro : <input type='number' min='1' id='submit' name='idArticle' value='$idArticle' readonly='readonly' style='width:40px;'><br>
+    <input type='number' name='offre' placeholder='montant en euro (€)' required> </br> <input type='submit' value='Proposer une offre'></a>";
+    }
+
+    
+    echo "</td> </tr><tr><td></td><td></td></tr>";
     
     echo "</table>";
     }

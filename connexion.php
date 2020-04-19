@@ -115,11 +115,12 @@
                         else {
                             $sql= "SELECT * FROM vendeur WHERE pseudo_v LIKE '$pseudo'";
                                     $result = mysqli_query($db_handle, $sql);
-                                    while ($data = mysqli_fetch_assoc($result)) {
+                                    while ($data = mysqli_fetch_assoc($result)) 
+                                    {
                                         $_SESSION['id_utilisateur']=$data['id_v'];
                                     }
                                     $_SESSION['type_utilisateur']= 'vendeur';
-                                    //header('Location: vendeur1.html');
+                                    header('Location: accueilvendeur.php');
                         }
                         
             

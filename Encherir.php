@@ -14,10 +14,10 @@ $db_found = mysqli_select_db($db_handle, $database);
     {
         if($idArticle && $idAcheteur && $enchere)
         {
-            $sql = "SELECT * FROM acheteur WHERE id_a = '$idAcheteur'";
+                $sql = "SELECT * FROM acheteur WHERE id_a = '$idAcheteur'";
                 $result = mysqli_query($db_handle, $sql);
                 $data = mysqli_fetch_assoc($result);
-                if(is_null($date['num_carte']))
+                if(is_null($data['num_carte']))
                 {
                     header('Location: paiement.html');
                     exit();
@@ -90,11 +90,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                     echo '<meta http-equiv="refresh" content="0;URL=accueilacheteur.php">';
                 }
             }
-        }
-        $sql = "SELECT * FROM item WHERE id_item LIKE '$idArticle'";
-        $result = mysqli_query($db_handle, $sql);
-        while ($data = mysqli_fetch_assoc($result)) 
-        {
+        
 
         }
     }

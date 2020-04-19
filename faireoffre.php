@@ -17,7 +17,6 @@ $db_found = mysqli_select_db($db_handle, $database);
 
         if($idArticle && $idAcheteur && $offre)
         {
-            echo $idArticle;
             if($typeutilisateur==='acheteur')
             {
                 $sql = "SELECT * FROM acheteur WHERE id_a = '$idAcheteur'";
