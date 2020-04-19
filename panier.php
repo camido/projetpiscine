@@ -183,7 +183,7 @@ session_start();
     
     <div id="container">
         
-    <form action="paiement.html" method="POST">
+    <form action="paiement.php" method="POST">
         
 
         <section>
@@ -259,6 +259,7 @@ session_start();
                     
                     
                     }
+                    $_SESSION['total']=$total;
                     echo "</table>";
                     echo " <h3> SOUS-TOTAL : $total € </h3><br> Ce total ne prend en compte que les achats immédiats. </br> Le paiement des enchères et meilleures offre sera automatique.";
                     echo "<input type='submit' id='submit' value='Procéder au Paiement' >"; 
