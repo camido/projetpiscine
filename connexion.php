@@ -2,16 +2,25 @@
     session_start();
     session_unset();
 
+    $database = "ebayece";
+
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
     $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "";
     $mdp = isset($_POST["mdp"])? $_POST["mdp"] : "";
+    if ($db_found) 
+        {
+
+            
+            date_default_timezone_set('Europe/Paris');
+            $date2 = date('Y-m-d h:i:s');
+            $sql="DELETE FROM item WHERE date_fin < '$date2'";
+            $result = mysqli_query($db_handle, $sql);
+
 
     if($pseudo && $mdp) {
-        $database = "ebayece";
-
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        if ($db_found) 
-        {
+        
+        
             $sql = "SELECT pseudo_admin, email_admin, id_admin  FROM administrateur";
 
             if ($_POST["button1"]) {
@@ -136,12 +145,13 @@
                     header('Location: admin1.html');
                 }
             }
-        }
-        //fermer la connexion
-        mysqli_close($db_handle);
+        
     } 
     else 
     {
         header('Location: connexion.html');  
+    } 
     }
+        //fermer la connexion
+        mysqli_close($db_handle);
     ?>
