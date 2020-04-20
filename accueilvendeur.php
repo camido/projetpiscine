@@ -183,7 +183,7 @@ mysqli_close($db_handle);
     <body   style="background-image: url(<?php print $target; ?>)">
    
     <nav class="navbar t">
-        <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
+        <a class="navbar-brand" href="accueilvendeur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -199,7 +199,7 @@ mysqli_close($db_handle);
             
             <ul class="navbar-nav">
 
-                <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
+                <li class="nav-item"><a class="nav-link" href="vendrevendeur.php">Vendre</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Gérer mes ventes

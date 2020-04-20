@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>EbayECE - Supprimer </title>
+<title>EbayECE - Vendre </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -148,6 +148,20 @@
     font-family:sans-serif;
     }
     
+    form {
+
+width:100%;
+
+padding: 30px;
+
+border: 1px solid #f1f1f1;
+
+background: #fff;
+
+box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}
+    
     
 </style>
 <script type="text/javascript">
@@ -224,71 +238,32 @@ mysqli_close($db_handle);
 
    
        
-        <header class="page-header container-fluid">
-            <div class="overlay"></div> 
+
+    <div id="container">
+
+        <!-- zone de connexion -->
 
         
-   
-   
 
-        <?php
-        $id_v = $_SESSION['id_utilisateur'];
-        echo "<div style='text-align:center'>
-        <h3>  Voici tous vos items disponibles ! </h3>
-           </div>";
-        //identifier votre BDD
-        $database = "ebayece";
-        //connectez-vous de la BDD
-        $db_handle = mysqli_connect('localhost', 'root', '');
-        $db_found = mysqli_select_db($db_handle, $database);
-        //si la BDD existe
-            if ($db_found) {
-            //on cherche les items
+        <form action="vendrevendeur1.php" method="post" enctype="multipart/form-data">
 
-            $sql = "SELECT * FROM item WHERE id_v LIKE '$id_v'";
-            
-            $result = mysqli_query($db_handle, $sql);
+            <h1>Ajouter un item :</h1>
 
-            
-            //afficher les résultats
-            while ($data = mysqli_fetch_assoc($result)) {
-                $id=$data['id_item'];
-            echo "<br><table align='center'>";
-            echo "<caption> </caption>";
-            echo "<tr>";
-            echo "<th>  <h3>" . $data['nom_i'] . "</h3> ";
-            echo " #" . $data['id_item'] . "</th>"; 
-            echo "<td> Disponible en : " . $data['type_vente'] . "<br> Categorie : " . $data['categorie'] . "</td>";          
-            echo "<td> </td>";
-            
-            echo "</tr>";
-            $image = $data['photo_i'];
-            echo "<tr>";
-            echo "<th>" . "<img src='$image' height='140' width='100'>" ."<br><br></th>";
-            echo "<td><h5>Description de l'item : </h5><br>" . $data['description_i'] . "</td><td>";
 
-               // echo "<th> <a href='vendeur_supp.php?id=$id'> <h3>Supprimer</h3> </a>";
+                
+            <p> Mode d'achat : <br>
+                <input type="radio" name="categorie" value="Enchere"> Enchere <br>
+                <input type="radio" name="categorie" value="Achat Immediat"> Achat Immediat <br>
+                <input type="radio" name="categorie" value="Meilleure Offre"> Meilleure Offre <br>
+                <input type="radio" name="categorie" value="Meilleure Offre et Achat Immediat"> Meilleure offre et Achat Immediat</p>   
 
-            echo "<form action='vendeur_supp.php?id=$id' method='post' enctype='multipart/form-data'>";
-            echo "<input type='submit' value='Supprimer'>";
-            echo "</form>";
-        
-             
-        
-            echo "</td>";
-            echo "</tr>";
+                <input type="submit" value="Ajouter">  <br>
 
-            }
-            echo "</table>";
-            } else {
-            echo "Database not found. <br>";
-            }
-        
-            //fermer la connexion
-        mysqli_close($db_handle);
-        ?>  
-        
-   </header> 
+        </form>
+
+    </div>
+
+
 
     <footer class="container-fluid">
         <h6 class="text-uppercase font-weight-bold">Contact</h6>

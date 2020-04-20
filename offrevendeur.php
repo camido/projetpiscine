@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ebay ECE - Messagerie </title>
+<title>Ebay ECE - Offres </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet"
@@ -157,13 +157,13 @@ session_start();
             
             <ul class="navbar-nav">
                 
-                <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
+                <li class="nav-item"><a class="nav-link" href="vendrevendeur.php">Vendre</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Gérer mes ventes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Retirer items en vente</a>
+                    <a class="dropdown-item" href="item_vendeur.php">Retirer items en vente</a>
                       <a class="dropdown-item" href="offrevendeur.php">Mes demandes d'offre</a>
                     </div>
                   </li>
