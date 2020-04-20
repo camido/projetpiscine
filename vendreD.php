@@ -226,9 +226,9 @@ mysqli_close($db_handle);
             </h1>
             
             <p><label><b> Catégorie de l'item : </b></label><br>
-                <input type="radio" name="categorie"> Feraille ou tresor <br>
-                <input type="radio" name="categorie"> Bon pour le musee <br>
-                <input type="radio" name="categorie"> Accessoire VIP <br></p>
+                <input type="radio" name="categorie" value="Ferraille ou Tresor"> Ferraille ou Tresor <br>
+                <input type="radio" name="categorie" value="Bon pour le Musee"> Bon pour le Musee <br>
+                <input type="radio" name="categorie" value="Accessoire VIP"> Accessoire VIP <br></p>
 
             <label><b>Nom* :</b></label>
             <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>

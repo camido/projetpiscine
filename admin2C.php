@@ -148,7 +148,7 @@
     $type="Meilleure Offre";
     $ID=$_SESSION['id_utilisateur'];
     $typeutilisateur=$_SESSION['type_utilisateur'];
-
+    $prix = 0;
     //identifier votre BDD  
     $database = "ebayece"; 
 
@@ -167,25 +167,25 @@
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
                 
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, categorie, type_vente, id_admin) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3', '$item_categorie', '$type', '$ID')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_admin) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3', '$prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3==="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, categorie, type_vente, id_admin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_categorie', '$type','$ID')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$prix', '$item_categorie', '$type','$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, categorie, type_vente, id_admin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_categorie', '$type', '$ID')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2==="items/" && $item_photo3==="items/")
             {
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, categorie, type_vente, id_admin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_categorie', '$type', '$ID')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             header('Location: admin1.html');
@@ -197,25 +197,25 @@
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
                 
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, categorie, type_vente, id_v) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3', '$item_categorie', '$type', '$ID')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_v) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3',  '$prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3==="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, categorie, type_vente, id_v)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_categorie', '$type','$ID')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix,  categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$prix', '$item_categorie', '$type','$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, categorie, type_vente, id_v)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_categorie', '$type', '$ID')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3,  prix, categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2==="items/" && $item_photo3==="items/")
             {
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, categorie, type_vente, id_v)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_categorie', '$type', '$ID')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix,  categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1','$prix', '$item_categorie' , '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             header('Location: accueilvendeur.php');
