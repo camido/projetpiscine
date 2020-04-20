@@ -146,8 +146,7 @@
     $item_description = isset($_POST["item_description"])? $_POST["item_description"] : ""; 
     $item_prix = isset($_POST["item_prix"])? $_POST["item_prix"] : "";
     $item_categorie = isset($_POST["categorie"])? $_POST["categorie"] : "";
-    $item_date = isset($_POST["item_date"])? $_POST["item_date"] : "";
-    $type="Enchere";
+    $type="Achat Immediat";
     $ID=$_SESSION['id_utilisateur'];
     $typeutilisateur=$_SESSION['id_utilisateur'];
 
@@ -169,25 +168,25 @@
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
                 
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_admin, date_fin) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3' , '$item_prix', '$item_categorie', '$type', '$ID', '$item_date')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_admin) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3' , '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3==="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix, categorie, type_vente, id_admin, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_prix', '$item_categorie', '$type','$ID', '$item_date')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_prix', '$item_categorie', '$type','$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, prix, categorie, type_vente, id_admin, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_prix', '$item_categorie', '$type', '$ID' ,'$item_date')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2==="items/" && $item_photo3==="items/")
             {
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix, categorie, type_vente, id_admin, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID', '$item_date')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix, categorie, type_vente, id_admin)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             header('Location: admin1.html');
@@ -199,25 +198,25 @@
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
                 
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_v, date_fin) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3' , '$item_prix', '$item_categorie', '$type', '$ID', '$item_date')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, photo_i3, prix, categorie, type_vente, id_v) VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_photo3' , '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3==="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix, categorie, type_vente, id_v, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_prix', '$item_categorie', '$type','$ID', '$item_date')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i2, prix, categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo2', '$item_prix', '$item_categorie', '$type','$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
-            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, prix, categorie, type_vente, id_v, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_prix', '$item_categorie', '$type', '$ID' ,'$item_date')";
+            $sql = "INSERT INTO item (nom_i, description_i, photo_i, photo_i3, prix, categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_photo3', '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             if ($item_photo2==="items/" && $item_photo3==="items/")
             {
-                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix, categorie, type_vente, id_v, date_fin)
-                VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID', '$item_date')";
+                $sql = "INSERT INTO item (nom_i, description_i, photo_i, prix, categorie, type_vente, id_v)
+                VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
             header('Location: accueilvendeur.html');

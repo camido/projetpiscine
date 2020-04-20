@@ -6,10 +6,7 @@
     if($categorie == "") { $error .= "Categorie d'achat non choisie<br />";}
 
     if ($error == "") {
-        echo "Formulaire valide";
-    }
-    else {
-        echo "Erreur : $error";
+        header('Location: admin2.html');
     }
 
     if ($categorie == "Enchere")
@@ -29,7 +26,7 @@
 
     if ($categorie == "Meilleure Offre et Achat Immediat")
     {
-        header('Location: Admin2B.html');
+        header('Location: Admin2D.html');
     }
 
 ?>
