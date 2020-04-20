@@ -209,7 +209,9 @@ session_start();
                 {
                     echo "<br>Le paiement a été accepté. Merci d'avoir acheté sur EbayEce !<br>" ;
                     
-                    $sql="DELETE FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = '1') AND type_vente = 'Achat Immediat'";
+                    $sql="DELETE FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = $ID) AND type_vente = 'Achat Immediat'";
+                    $result = mysqli_query($db_handle, $sql);
+                    $sql="DELETE FROM item WHERE EXISTS (SELECT * FROM affiliation WHERE id_item = id_it AND id_a = $ID) AND type_vente = 'Meilleure Offre et Achat Immediat' AND achat_i = '1'";
                     $result = mysqli_query($db_handle, $sql);
                     $_SESSION['action']==='rien';
                 }

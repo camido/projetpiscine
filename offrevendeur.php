@@ -137,8 +137,38 @@ session_start();
 </script>   
 </head>
 
-<body>
-   
+<?php
+
+//identifier votre BDD
+$database = "ebayece";
+
+//connectez-vous de la BDD
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+//si la BDD existe
+$ID = $_SESSION['id_utilisateur'];
+    if ($db_found) {
+    //on cherche le livre
+    $sql = "SELECT * FROM vendeur where id_v like '$ID'";
+    $result = mysqli_query($db_handle, $sql);
+    while ($data = mysqli_fetch_assoc($result)) {
+  
+    $target = $data['image_fond'];
+
+    echo "</table>";}
+
+} 
+else {
+echo "Database not found. <br>";
+}
+
+//fermer la connexion
+mysqli_close($db_handle);
+?> 
+    
+
+    <body   style="background-image: url(<?php print $target; ?>)">
+    
     <nav class="navbar t">
         <a class="navbar-brand" href="accueilacheteur.php">Ebay ECE</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">

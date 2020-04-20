@@ -250,7 +250,7 @@ mysqli_close($db_handle);
             //afficher les résultats
             while ($data = mysqli_fetch_assoc($result)) {
             
-            echo "<h3>Bon retour parmis nous :" . $data['pseudo_v'] . "</h3>"; 
+            echo "<h3>Bon retour parmis nous : " . $data['pseudo_v'] . "</h3>"; 
    
             echo "<br><table align='center'>";
 
@@ -259,7 +259,7 @@ mysqli_close($db_handle);
             echo "<th> <U> E-mail</U> : " . $data['email_v'] . "</th>";
             echo "</tr>";
 
-            echo '<img src="'.$data['photo_v'].'" width="128" height="117"> </img>';
+            echo '<img src="'.$data['photo_v'].'" width="178" height="200"> </img>';
             
 
            

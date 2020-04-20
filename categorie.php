@@ -253,7 +253,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 //si la BDD existe
     if ($db_found) {
     //on cherche le livre
-    $sql = "SELECT * FROM item WHERE categorie LIKE 'Ferraille ou Tresor' AND (type_vente LIKE 'Achat Immediat' OR type_vente LIKE 'Meilleure Offre et Achat Immediat')";
+    $sql = "SELECT * FROM item WHERE categorie LIKE '$catego' AND (type_vente LIKE 'Achat Immediat' OR type_vente LIKE 'Meilleure Offre et Achat Immediat')";
     $result = mysqli_query($db_handle, $sql);
 
     

@@ -15,9 +15,12 @@
        {
 
         $sqlInsert = "INSERT INTO affiliation (id_a, id_it) VALUES ('$idAcheteur', '$idArticle')";    
-
-                
         $result = mysqli_query($db_handle, $sqlInsert); 
+        $values=1;
+        $sql= "UPDATE item SET achat_i='$values' WHERE id_item = $idArticle";
+        $result = mysqli_query($db_handle, $sql); 
+                
+        
         header('Location: panier.php');
         exit();
 
