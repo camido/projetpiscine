@@ -234,7 +234,9 @@ session_start();
                     if($data['type_vente']==='Achat Immediat')
                     {
                         $total= $total + $data['prix'] ;
-                        echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                        echo "<td align='left' width=25%> Le prix est : <h3>" . $data['prix'] . " € </h3>
+                        <a href='retirerpanier.php?id=$id'><input type='button' value='Retirer du panier' name='retirer'></a>
+                        </td>";
                     }  
                     if($data['type_vente']==='Meilleure Offre et Achat Immediat')
                     {
@@ -245,7 +247,9 @@ session_start();
                         if(mysqli_num_rows($result2) === 0)
                         {
                             $total= $total + $data['prix'] ;
-                            echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3></td>";
+                            echo "<td align='left' width=25%> Le prix est : <h3>". $data['prix'] . " € </h3>
+                            <a href='retirerpanier.php?id=$id'> <input type='button' value='Retirer du panier' name='retirer'></a>
+                            </td>";
                         }
                         else
                         {
