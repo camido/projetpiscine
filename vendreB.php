@@ -214,7 +214,7 @@ mysqli_close($db_handle);
     <div id="container">
         <!-- zone de connexion -->
         
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="admin2B.php" method="post" enctype="multipart/form-data">
             
             <h1>
                 <table>
