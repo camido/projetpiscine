@@ -249,7 +249,7 @@ mysqli_close($db_handle);
                 <tr>
                     <th>
                         <label><b> Prix de depart* : </b></label>
-                        <input type="int" placeholder="Prix(€)" name="item_prix" required>
+                        <input type="number" placeholder="Prix(€)" name="item_prix" min='1' required>
                     </th>
                 </tr>
             </table>

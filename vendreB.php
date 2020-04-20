@@ -227,21 +227,21 @@ mysqli_close($db_handle);
             </h1>
             
             <p><label><b> Catégorie de l'item : </b></label><br>
-                <input type="radio" name="categorie"> Feraille ou tresor <br>
-                <input type="radio" name="categorie"> Bon pour le musee <br>
-                <input type="radio" name="categorie"> Accessoire VIP <br></p>
+                <input type="radio" name="categorie" value="Ferraille ou Tresor"> Ferraille ou Tresor <br>
+                <input type="radio" name="categorie" value="Bon pour le Musee"> Bon pour le Musee <br>
+                <input type="radio" name="categorie" value="Accessoire VIP"> Accessoire VIP <br></p>
 
             <label><b>Nom* :</b></label>
             <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>
             
             <label><b>Photo 1* :</b></label>
-            <input type="file" name="item_photo" id="item_photo" required><br>
+            <input type="file" name="item_photo1" id="item_photo1" required><br>
 
             <label><b>Photo 2 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
+            <input type="file" name="item_photo2" id="item_photo2"><br>
 
             <label><b>Photo 3 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
+            <input type="file" name="item_photo3" id="item_photo3"><br>
 
             <label><b>Description* :</b></label>
             <input type="text" placeholder="Ecrire une description" name="item_description" required size=2>
@@ -250,7 +250,7 @@ mysqli_close($db_handle);
                 <tr>
                     <th>
                         <label><b> Prix* : </b></label>
-                        <input type="text" placeholder="Prix(€)" id="item_prix" required>
+                        <input type="number" placeholder="Prix(€)" name="item_prix" min='1' required>
                     </th>
                 </tr>
             </table>

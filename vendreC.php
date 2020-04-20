@@ -126,18 +126,12 @@
 
     
     form {
-
-width:100%;
-
-padding: 30px;
-
-border: 1px solid #f1f1f1;
-
-background: #fff;
-
-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
-}
+        width:200%;
+        padding: 30px;
+        border: 1px solid #f1f1f1;
+        background: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
     
     
 </style>
@@ -239,13 +233,13 @@ mysqli_close($db_handle);
             <input type="text" placeholder="Entrer le nom de l'item" name="item_name" required>
             
             <label><b>Photo 1* :</b></label>
-            <input type="file" name="item_photo" id="item_photo" required><br>
+            <input type="file" name="item_photo1" id="item_photo1" required><br>
 
             <label><b>Photo 2 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
+            <input type="file" name="item_photo2" id="item_photo2"><br>
 
             <label><b>Photo 3 :</b></label>
-            <input type="file" name="item_photo" id="item_photo"><br>
+            <input type="file" name="item_photo3" id="item_photo3"><br>
 
             <label><b>Description* :</b></label>
             <input type="text" placeholder="Ecrire une description" name="item_description" required size=2>
