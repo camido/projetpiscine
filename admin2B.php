@@ -148,7 +148,7 @@
     $item_categorie = isset($_POST["categorie"])? $_POST["categorie"] : "";
     $type="Achat Immediat";
     $ID=$_SESSION['id_utilisateur'];
-    $typeutilisateur=$_SESSION['id_utilisateur'];
+    $typeutilisateur=$_SESSION['type_utilisateur'];
 
     //identifier votre BDD  
     $database = "ebayece"; 
@@ -219,7 +219,7 @@
                 VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID')";
                 $result = mysqli_query($db_handle, $sql);     
             }
-            header('Location: accueilvendeur.html');
+            header('Location: accueilvendeur.php');
         }
 
     }else 

@@ -149,11 +149,10 @@
     $item_date = isset($_POST["item_date"])? $_POST["item_date"] : "";
     $type="Enchere";
     $ID=$_SESSION['id_utilisateur'];
-    $typeutilisateur=$_SESSION['id_utilisateur'];
+    $typeutilisateur=$_SESSION['type_utilisateur'];
 
     //identifier votre BDD  
     $database = "ebayece"; 
-
  
     //connectez-vous de votre BDD  
     $db_handle = mysqli_connect('localhost', 'root', '');  
@@ -196,6 +195,7 @@
         if($typeutilisateur === 'vendeur')
 
         {
+            
             if ($item_photo2!=="items/" && $item_photo3!=="items/")
             {
                 
@@ -220,7 +220,7 @@
                 VALUES('$item_name', '$item_description', '$item_photo1', '$item_prix', '$item_categorie', '$type', '$ID', '$item_date')";
                 $result = mysqli_query($db_handle, $sql);     
             }
-            header('Location: accueilvendeur.html');
+            header('Location: accueilvendeur.php');
         }
 
     }else 
